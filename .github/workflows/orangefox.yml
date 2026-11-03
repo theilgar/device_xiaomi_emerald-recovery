@@ -26,7 +26,7 @@ jobs:
       - name: Cleanup Host Disk Space
         run: |
           sudo apt-get clean
-          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /usr/lib/jvm /opt/ghc
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /usr/lib/jvm /opt/ghc /var/lib/docker
           sudo rm -rf /usr/local/share/boost /usr/local/share/powershell
           df -h
 
@@ -66,9 +66,10 @@ jobs:
           source build/envsetup.sh
           export ALLOW_MISSING_DEPENDENCIES=true
           export FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER=1
+          export FOX_VENDOR_BOOT_RECOVERY=1
           export LC_ALL="C"
           lunch omni_${{ env.DEVICE }}-eng
-          mka recoveryimage vendorbootimage -j$(nproc --all)
+          mka vendorbootimage -j$(nproc --all)
 
       - name: Prepare Artifacts
         run: |
@@ -76,7 +77,6 @@ jobs:
           cd ~/orangefox/out/target/product/${{ env.DEVICE }}
           find . -maxdepth 2 -name "OrangeFox*.zip" -exec cp {} ${GITHUB_WORKSPACE}/out_artifacts/ \; || true
           find . -maxdepth 2 -name "OrangeFox*.img" -exec cp {} ${GITHUB_WORKSPACE}/out_artifacts/ \; || true
-          find . -maxdepth 1 -name "recovery.img" -exec cp {} ${GITHUB_WORKSPACE}/out_artifacts/ \; || true
           find . -maxdepth 1 -name "vendor_boot.img" -exec cp {} ${GITHUB_WORKSPACE}/out_artifacts/ \; || true
           cd ${GITHUB_WORKSPACE}/out_artifacts
           ls -la

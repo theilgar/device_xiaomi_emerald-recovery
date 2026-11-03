@@ -7,7 +7,9 @@
 
 on init
     setprop sys.usb.configfs 1
-    setprop sys.usb.controller "11201000.usb0"
+    setprop sys.usb.ffs.aio_compat 0
+    setprop sys.usb.controller "musb-hdrc"
+    setprop vendor.usb.controller "musb-hdrc"
 
 on fs
     wait /dev/block/platform/soc/11270000.ufshci
@@ -16,7 +18,11 @@ on fs
 on post-fs
     start boot-hal-1-2
 
-# Touchscreen initialization fallback
+# Touchscreen driver modules (verified against stock init.insmod.touch.cfg)
 on boot
-    insmod /vendor/lib/modules/focaltech_fts.ko
-    insmod /vendor/lib/modules/goodix_core.ko
+    insmod /vendor/lib/modules/tui-common.ko
+    insmod /vendor/lib/modules/ts_scp_common.ko
+    insmod /vendor/lib/modules/gt9916.ko
+    insmod /vendor/lib/modules/ft3683g.ko
+    insmod /vendor/lib/modules/fts_touch_spi.ko
+    insmod /vendor/lib/modules/focaltech_touch.ko
