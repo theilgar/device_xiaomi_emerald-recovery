@@ -91,11 +91,14 @@ jobs:
           cp -a ${GITHUB_WORKSPACE}/device/xiaomi/emerald ~/orangefox/device/xiaomi/
           ls -la ~/orangefox/device/xiaomi/emerald/
 
-      - name: Update mkbootimg for Boot Header v4
+      - name: Update mkbootimg and Patch minuitwrp Haptics
         run: |
           mkdir -p ~/orangefox/system/tools/mkbootimg
           cp -f ${GITHUB_WORKSPACE}/device/xiaomi/emerald/prebuilt/mkbootimg.py ~/orangefox/system/tools/mkbootimg/mkbootimg.py
           cp -f ${GITHUB_WORKSPACE}/device/xiaomi/emerald/prebuilt/unpack_bootimg.py ~/orangefox/system/tools/mkbootimg/unpack_bootimg.py
+          if [ -f "${GITHUB_WORKSPACE}/device/xiaomi/emerald/patches/minuitwrp_awinic_haptics.patch" ]; then
+            patch -p1 -d ~/orangefox/bootable/recovery -N -r - < "${GITHUB_WORKSPACE}/device/xiaomi/emerald/patches/minuitwrp_awinic_haptics.patch" || true
+          fi
 
       - name: Compile OrangeFox Recovery
         shell: bash --noprofile --norc {0}

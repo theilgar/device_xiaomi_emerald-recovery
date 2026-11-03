@@ -142,10 +142,10 @@ OF_STATUS_INDENT_RIGHT := 48
 OF_CLOCK_POS := 1
 OF_ALLOW_DISABLE_NAVBAR := 0
 
-# Display Backlight
+# Display Backlight (12-bit AMOLED PWM: 0 - 4095)
 TW_BRIGHTNESS_PATH := /sys/class/leds/lcd-backlight/brightness
-TW_MAX_BRIGHTNESS := 2047
-TW_DEFAULT_BRIGHTNESS := 1024
+TW_MAX_BRIGHTNESS := 4095
+TW_DEFAULT_BRIGHTNESS := 2048
 
 # Flashlight
 OF_FL_PATH1 := /sys/devices/platform/flashlights_mt6789/mt6789_flash
