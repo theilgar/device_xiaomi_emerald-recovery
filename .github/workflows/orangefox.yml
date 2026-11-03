@@ -91,7 +91,7 @@ jobs:
           fi
 
           echo "=== STARTING COMPILATION ==="
-          mka adbd recoveryimage -j$(nproc --all)
+          mka adbd vendorbootimage recoveryimage -j$(nproc --all)
           BUILD_STATUS=$?
           echo "=== Build return code: ${BUILD_STATUS} ==="
           if [ ${BUILD_STATUS} -ne 0 ]; then
@@ -105,10 +105,9 @@ jobs:
           cd ~/orangefox/out/target/product/emerald
           find . -maxdepth 2 -name "OrangeFox*.zip" -exec cp {} ${GITHUB_WORKSPACE}/out_artifacts/ \; || true
           find . -maxdepth 2 -name "OrangeFox*.img" -exec cp {} ${GITHUB_WORKSPACE}/out_artifacts/ \; || true
-          find . -maxdepth 1 -name "vendor_boot.img" -exec cp {} ${GITHUB_WORKSPACE}/out_artifacts/ \; || true
-          find . -maxdepth 1 -name "recovery.img" -exec cp {} ${GITHUB_WORKSPACE}/out_artifacts/ \; || true
+          find . -maxdepth 2 -name "vendor_boot.img" -exec cp {} ${GITHUB_WORKSPACE}/out_artifacts/ \; || true
+          find . -maxdepth 2 -name "recovery.img" -exec cp {} ${GITHUB_WORKSPACE}/out_artifacts/ \; || true
           cd ${GITHUB_WORKSPACE}/out_artifacts
-          # Duplicate recovery.img as vendor_boot.img and vice versa so users can find both
           if [ -f "recovery.img" ] && [ ! -f "vendor_boot.img" ]; then
             cp recovery.img vendor_boot.img
           elif [ -f "vendor_boot.img" ] && [ ! -f "recovery.img" ]; then
@@ -131,6 +130,18 @@ jobs:
         with:
           name: OrangeFox-Recovery-emerald
           path: out_artifacts/*
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        if: success()
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: recovery-build-${{ github.run_number }}
+          name: OrangeFox Recovery for Redmi Note 13 Pro 4G (${{ github.run_number }})
+          draft: false
+          prerelease: false
+          files: out_artifacts/*
 
       - name: Push failure log to git
         if: failure()
