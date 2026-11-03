@@ -12,3 +12,28 @@ index e497df62..3a9d451c 100644
      } else
          write_to_file(VIBRATOR_TIMEOUT_FILE, tout);
  #endif
+diff --git a/minuitwrp/graphics_drm.cpp b/minuitwrp/graphics_drm.cpp
+index 99ebd284..6469a526 100644
+--- a/minuitwrp/graphics_drm.cpp
++++ b/minuitwrp/graphics_drm.cpp
+@@ -689,10 +689,17 @@ static void update_plane_fb() {
+     drmModeAtomicAddProperty(atomic_req, plane_res[i].plane->plane_id,
+                              fb_prop_id, drm_surfaces[current_buffer]->fb_id);
+ 
+-  /* Commit changes */
+-  int32_t ret;
+-  ret = drmModeAtomicCommit(drm_fd, atomic_req,
++  /* Commit changes (Non-blocking async page flip to eliminate UI lag/stutter) */
++  int32_t ret = drmModeAtomicCommit(drm_fd, atomic_req,
++                 DRM_MODE_ATOMIC_NONBLOCK, NULL);
++  if (ret) {
++    ret = drmModeAtomicCommit(drm_fd, atomic_req,
++                 0, NULL);
++  }
++  if (ret) {
++    ret = drmModeAtomicCommit(drm_fd, atomic_req,
+                  DRM_MODE_ATOMIC_ALLOW_MODESET, NULL);
++  }
+ 
+   drmModeAtomicFree(atomic_req);
+ 
