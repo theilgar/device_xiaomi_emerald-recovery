@@ -36,6 +36,19 @@ AB_OTA_UPDATER := true
 FOX_VIRTUAL_AB_DEVICE := 1
 FOX_VENDOR_BOOT_RECOVERY := 1
 
+# A/B OTA Partitions
+AB_OTA_PARTITIONS += \
+    boot \
+    vendor_boot \
+    dtbo \
+    vbmeta \
+    vbmeta_system \
+    vbmeta_vendor \
+    system \
+    system_ext \
+    product \
+    vendor
+
 # Partitions
 BOARD_FLASH_BLOCK_SIZE := 262144
 BOARD_BOOTIMAGE_PARTITION_SIZE := 67108864
