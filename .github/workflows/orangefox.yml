@@ -4,8 +4,11 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - fox_12.1
       - main
+
+concurrency:
+  group: orangefox-build
+  cancel-in-progress: true
 
 permissions:
   contents: write
