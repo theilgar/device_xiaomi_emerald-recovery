@@ -1,0 +1,990 @@
++ cd /home/runner/orangefox
++ export ALLOW_MISSING_DEPENDENCIES=true
++ ALLOW_MISSING_DEPENDENCIES=true
++ export FOX_BUILD_TYPE=Alpha
++ FOX_BUILD_TYPE=Alpha
++ export FOX_BUILD_DEVICE=emerald
++ FOX_BUILD_DEVICE=emerald
++ export FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER=1
++ FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER=1
++ export FOX_VENDOR_BOOT_RECOVERY=1
++ FOX_VENDOR_BOOT_RECOVERY=1
++ export LC_ALL=C
++ LC_ALL=C
++ source build/envsetup.sh
+++ VARIANT_CHOICES=(user userdebug eng)
+++ unset COMMON_LUNCH_CHOICES_CACHE
+++ case `uname -s` in
++++ uname -s
+++ case `uname -s` in
++++ uname -s
+++ validate_current_shell
++++ ps -o command -p 13827
+++ local 'current_sh=COMMAND
+/usr/bin/bash --noprofile --norc /home/runner/work/_temp/5a64a6a0-d9c7-45d9-8488-7a487af64140.sh'
+++ case "$current_sh" in
+++ source_vendorsetup
+++ unset VENDOR_PYTHONPATH
++++ gettop
++++ local TOPFILE=build/make/core/envsetup.mk
++++ '[' -n '' -a -f /build/make/core/envsetup.mk ']'
++++ '[' -f build/make/core/envsetup.mk ']'
++++ PWD=
++++ /bin/pwd
+++ local T=/home/runner/orangefox
+++ allowed=
++++ cd /home/runner/orangefox
++++ find -L device vendor product -maxdepth 4 -name allowed-vendorsetup_sh-files
++++ sort
+++ allowed_files=
+++ '[' -n '' ']'
+++ for dir in device vendor product
++++ cd /home/runner/orangefox
++++ test -d device
++++ find -L device -maxdepth 4 -name vendorsetup.sh
++++ sort
+++ for dir in device vendor product
++++ cd /home/runner/orangefox
++++ test -d vendor
++++ find -L vendor -maxdepth 4 -name vendorsetup.sh
++++ sort
+++ for dir in device vendor product
++++ cd /home/runner/orangefox
++++ test -d product
+++ addcompletions
+++ local f=
+++ '[' -z '5.1.16(1)-release' -a -z '' ']'
+++ '[' -n '5.1.16(1)-release' -a 5 -lt 3 ']'
+++ completion_files=('system/core/adb/adb.bash' 'system/core/fastboot/fastboot.bash' 'tools/asuite/asuite.sh')
+++ local completion_files
+++ for f in ${completion_files[*]}
+++ '[' -f system/core/adb/adb.bash ']'
+++ for f in ${completion_files[*]}
+++ '[' -f system/core/fastboot/fastboot.bash ']'
+++ should_add_completion system/core/fastboot/fastboot.bash
++++ basename system/core/fastboot/fastboot.bash
++++ sed s/_completion//
++++ sed 's/\.\(.*\)*sh$//'
+++ local cmd=fastboot
+++ case :"$ENVSETUP_NO_COMPLETION": in
+++ return 0
+++ . system/core/fastboot/fastboot.bash
+++++ check_type compopt
+++++ type -t compopt
++++ [[ builtin == \b\u\i\l\t\i\n ]]
++++ complete -F _fastboot fastboot
+++ for f in ${completion_files[*]}
+++ '[' -f tools/asuite/asuite.sh ']'
+++ should_add_completion bit
++++ sed s/_completion//
++++ basename bit
++++ sed 's/\.\(.*\)*sh$//'
+++ local cmd=bit
+++ case :"$ENVSETUP_NO_COMPLETION": in
+++ return 0
+++ complete -C 'bit --tab' bit
+++ '[' -z '' ']'
+++ complete -o nospace -F _croot croot
+++ complete -F _lunch lunch
+++ complete -F _complete_android_module_names pathmod
+++ complete -F _complete_android_module_names gomod
+++ complete -F _complete_android_module_names outmod
+++ complete -F _complete_android_module_names installmod
+++ complete -F _complete_android_module_names m
++++ gettop
++++ local TOPFILE=build/make/core/envsetup.mk
++++ '[' -n '' -a -f /build/make/core/envsetup.mk ']'
++++ '[' -f build/make/core/envsetup.mk ']'
++++ PWD=
++++ /bin/pwd
+++ export ANDROID_BUILD_TOP=/home/runner/orangefox
+++ ANDROID_BUILD_TOP=/home/runner/orangefox
+++ . /home/runner/orangefox/vendor/twrp/build/envsetup.sh
++++ alias bib=breakfast
+++++ gettop
+++++ local TOPFILE=build/make/core/envsetup.mk
+++++ '[' -n '' -a -f /build/make/core/envsetup.mk ']'
+++++ '[' -f build/make/core/envsetup.mk ']'
+++++ PWD=
+++++ /bin/pwd
++++ export TOP=/home/runner/orangefox
++++ TOP=/home/runner/orangefox
+++++ gettop
+++++ local TOPFILE=build/make/core/envsetup.mk
+++++ '[' -n /home/runner/orangefox -a -f /home/runner/orangefox/build/make/core/envsetup.mk ']'
+++++ cd /home/runner/orangefox
+++++ PWD=
+++++ /bin/pwd
++++ '[' -d /home/runner/orangefox/vendor/qcom/sdclang ']'
+++++ gettop
+++++ local TOPFILE=build/make/core/envsetup.mk
+++++ '[' -n /home/runner/orangefox -a -f /home/runner/orangefox/build/make/core/envsetup.mk ']'
+++++ cd /home/runner/orangefox
+++++ PWD=
+++++ /bin/pwd
++++ '[' -s /home/runner/orangefox/frameworks/base/services/core/xsd/vts/Android.mk ']'
+++ orangefox_envsetup
++++ gettop
++++ local TOPFILE=build/make/core/envsetup.mk
++++ '[' -n /home/runner/orangefox -a -f /home/runner/orangefox/build/make/core/envsetup.mk ']'
++++ cd /home/runner/orangefox
++++ PWD=
++++ /bin/pwd
+++ export FOX_MANIFEST_ROOT=/home/runner/orangefox
+++ FOX_MANIFEST_ROOT=/home/runner/orangefox
+++ '[' -z '' ']'
+++ '[' '!' -f /home/runner/orangefox/bootable/recovery/orangefox_defaults.go -a '!' -f /home/runner/orangefox/bootable/recovery/orangefox.mk ']'
+++ '[' '' = 1 ']'
+++ unset NOT_ORANGEFOX
+++ export ALLOW_MISSING_DEPENDENCIES=true
+++ ALLOW_MISSING_DEPENDENCIES=true
+++ '[' -z '' ']'
+++ '[' -n '' ']'
+++ export OUT_DIR=/home/runner/orangefox/out
+++ OUT_DIR=/home/runner/orangefox/out
+++ export OUT=/home/runner/orangefox/out
+++ OUT=/home/runner/orangefox/out
+++ '[' -s /home/runner/orangefox/frameworks/base/services/core/xsd/vts/Android.mk ']'
++ echo '=== DUMPING PRODUCTS LIST ==='
+=== DUMPING PRODUCTS LIST ===
++ build/soong/soong_ui.bash --dumpvar-mode COMMON_LUNCH_CHOICES
+aosp_arm-eng aosp_arm64-eng aosp_x86-eng aosp_x86_64-eng omni_emerald-eng omni_emerald-userdebug twrp_emerald-eng twrp_emerald-userdebug
++ echo '=== RUNNING LUNCH ==='
+=== RUNNING LUNCH ===
++ lunch twrp_emerald-eng
++ local answer
++ [[ 1 -gt 1 ]]
++ '[' twrp_emerald-eng ']'
++ answer=twrp_emerald-eng
++ local selection=
++ '[' -z twrp_emerald-eng ']'
++ echo -n twrp_emerald-eng
++ grep -q -e '^[0-9][0-9]*$'
++ selection=twrp_emerald-eng
++ export TARGET_BUILD_APPS=
++ TARGET_BUILD_APPS=
++ local product variant_and_version variant version
++ product=twrp_emerald
++ variant_and_version=eng
++ '[' eng '!=' twrp_emerald-eng ']'
++ variant=eng
++ '[' eng '!=' eng ']'
++ '[' -z twrp_emerald ']'
++ check_product twrp_emerald
+++ gettop
+++ local TOPFILE=build/make/core/envsetup.mk
+++ '[' -n /home/runner/orangefox -a -f /home/runner/orangefox/build/make/core/envsetup.mk ']'
+++ cd /home/runner/orangefox
+++ PWD=
+++ /bin/pwd
++ local T=/home/runner/orangefox
++ '[' '!' /home/runner/orangefox ']'
++ TARGET_PRODUCT=twrp_emerald
++ TARGET_BUILD_VARIANT=
++ TARGET_BUILD_TYPE=
++ TARGET_BUILD_APPS=
++ get_build_var TARGET_DEVICE
++ '[' '' = true ']'
+++ gettop
+++ local TOPFILE=build/make/core/envsetup.mk
+++ '[' -n /home/runner/orangefox -a -f /home/runner/orangefox/build/make/core/envsetup.mk ']'
+++ cd /home/runner/orangefox
+++ PWD=
+++ /bin/pwd
++ local T=/home/runner/orangefox
++ '[' '!' /home/runner/orangefox ']'
++ cd /home/runner/orangefox
++ build/soong/soong_ui.bash --dumpvar-mode TARGET_DEVICE
+++ gettop
+++ local TOPFILE=build/make/core/envsetup.mk
+++ '[' -n /home/runner/orangefox -a -f /home/runner/orangefox/build/make/core/envsetup.mk ']'
+++ cd /home/runner/orangefox
+++ PWD=
+++ /bin/pwd
++ T=/home/runner/orangefox
++ cd /home/runner/orangefox
++ vendor/twrp/build/tools/roomservice.py twrp_emerald true
+Trying dependencies-only mode on a non-existing device tree?
++ cd -
++ TARGET_PRODUCT=twrp_emerald
++ TARGET_BUILD_VARIANT=eng
++ TARGET_PLATFORM_VERSION=
++ build_build_var_cache
+++ gettop
+++ local TOPFILE=build/make/core/envsetup.mk
+++ '[' -n /home/runner/orangefox -a -f /home/runner/orangefox/build/make/core/envsetup.mk ']'
+++ cd /home/runner/orangefox
+++ PWD=
+++ /bin/pwd
++ local T=/home/runner/orangefox
++ cached_vars=(`cat $T/build/envsetup.sh $T/vendor/twrp/build/envsetup.sh | tr '()' '  ' | awk '{for(i=1;i<=NF;i++) if($i~/get_build_var/) print $(i+1)}' | sort -u | tr '\n' ' '`)
+++ cat /home/runner/orangefox/build/envsetup.sh /home/runner/orangefox/vendor/twrp/build/envsetup.sh
+++ tr '()' '  '
+++ awk '{for(i=1;i<=NF;i++) if($i~/get_build_var/) print $(i+1)}'
+++ sort -u
+++ tr '\n' ' '
++ cached_abs_vars=(`cat $T/build/envsetup.sh $T/vendor/twrp/build/envsetup.sh | tr '()' '  ' | awk '{for(i=1;i<=NF;i++) if($i~/get_abs_build_var/) print $(i+1)}' | sort -u | tr '\n' ' '`)
+++ cat /home/runner/orangefox/build/envsetup.sh /home/runner/orangefox/vendor/twrp/build/envsetup.sh
+++ tr '()' '  '
+++ sort -u
+++ awk '{for(i=1;i<=NF;i++) if($i~/get_abs_build_var/) print $(i+1)}'
+++ tr '\n' ' '
+++ builtin cd /home/runner/orangefox
+++ build/soong/soong_ui.bash --dumpvars-mode '--vars=2ND_TARGET_GCC_VERSION ANDROID_BUILD_PATHS COMMON_LUNCH_CHOICES HOST_PREBUILT_TAG OUT_DIR PRODUCT_OUT TARGET_ARCH TARGET_BUILD_VARIANT TARGET_DEVICE TARGET_GCC_VERSION TARGET_PLATFORM_VERSION TARGET_PRODUCT print report_config' '--abs-vars=ANDROID_CLANG_PREBUILTS ANDROID_GCC_PREBUILTS ANDROID_JAVA_HOME ANDROID_JAVA_TOOLCHAIN ANDROID_PREBUILTS HOST_OUT HOST_OUT_TESTCASES PRODUCT_OUT SOONG_HOST_OUT TARGET_OUT_TESTCASES print' --var-prefix=var_cache_ --abs-var-prefix=abs_var_cache_
++ build_dicts_script='var_cache_2ND_TARGET_GCC_VERSION='\''4.9'\''
+var_cache_ANDROID_BUILD_PATHS='\''/home/runner/orangefox/out/soong/host/linux-x86/bin:/home/runner/orangefox/out/host/linux-x86/bin'\''
+var_cache_COMMON_LUNCH_CHOICES='\''aosp_arm-eng aosp_arm64-eng aosp_x86-eng aosp_x86_64-eng omni_emerald-eng omni_emerald-userdebug twrp_emerald-eng twrp_emerald-userdebug'\''
+var_cache_HOST_PREBUILT_TAG='\''linux-x86'\''
+var_cache_OUT_DIR='\''/home/runner/orangefox/out'\''
+var_cache_PRODUCT_OUT='\''/home/runner/orangefox/out/target/product/emerald'\''
+var_cache_TARGET_ARCH='\''arm64'\''
+var_cache_TARGET_BUILD_VARIANT='\''eng'\''
+var_cache_TARGET_DEVICE='\''emerald'\''
+var_cache_TARGET_GCC_VERSION='\''4.9'\''
+var_cache_TARGET_PLATFORM_VERSION='\''SP2A'\''
+var_cache_TARGET_PRODUCT='\''twrp_emerald'\''
+var_cache_print='\'''\''
+var_cache_report_config='\''============================================
+PLATFORM_VERSION_CODENAME=REL
+PLATFORM_VERSION=12
+TARGET_PRODUCT=twrp_emerald
+TARGET_BUILD_VARIANT=eng
+TARGET_BUILD_TYPE=release
+TARGET_ARCH=arm64
+TARGET_ARCH_VARIANT=armv8-a
+TARGET_CPU_VARIANT=generic
+TARGET_2ND_ARCH=arm
+TARGET_2ND_ARCH_VARIANT=armv7-a-neon
+TARGET_2ND_CPU_VARIANT=generic
+HOST_ARCH=x86_64
+HOST_2ND_ARCH=x86
+HOST_OS=linux
+HOST_OS_EXTRA=Linux-6.8.0-1070-azure-x86_64-Ubuntu-22.04.5-LTS
+HOST_CROSS_OS=windows
+HOST_CROSS_ARCH=x86
+HOST_CROSS_2ND_ARCH=x86_64
+HOST_BUILD_TYPE=release
+BUILD_ID=SP2A.220405.004
+OUT_DIR=/home/runner/orangefox/out
+============================================'\''
+abs_var_cache_ANDROID_CLANG_PREBUILTS='\''/home/runner/orangefox/prebuilts/clang/host/linux-x86'\''
+abs_var_cache_ANDROID_GCC_PREBUILTS='\''/home/runner/orangefox/prebuilts/gcc/linux-x86'\''
+abs_var_cache_ANDROID_JAVA_HOME='\''/home/runner/orangefox/prebuilts/jdk/jdk11/linux-x86'\''
+abs_var_cache_ANDROID_JAVA_TOOLCHAIN='\''/home/runner/orangefox/prebuilts/jdk/jdk11/linux-x86/bin'\''
+abs_var_cache_ANDROID_PREBUILTS='\''/home/runner/orangefox/prebuilt/linux-x86'\''
+abs_var_cache_HOST_OUT='\''/home/runner/orangefox/out/host/linux-x86'\''
+abs_var_cache_HOST_OUT_TESTCASES='\''/home/runner/orangefox/out/host/linux-x86/testcases'\''
+abs_var_cache_PRODUCT_OUT='\''/home/runner/orangefox/out/target/product/emerald'\''
+abs_var_cache_SOONG_HOST_OUT='\''/home/runner/orangefox/out/soong/host/linux-x86'\''
+abs_var_cache_TARGET_OUT_TESTCASES='\''/home/runner/orangefox/out/target/product/emerald/testcases'\''
+abs_var_cache_print='\'''\'''
++ local ret=0
++ '[' 0 -ne 0 ']'
++ eval 'var_cache_2ND_TARGET_GCC_VERSION='\''4.9'\''
+var_cache_ANDROID_BUILD_PATHS='\''/home/runner/orangefox/out/soong/host/linux-x86/bin:/home/runner/orangefox/out/host/linux-x86/bin'\''
+var_cache_COMMON_LUNCH_CHOICES='\''aosp_arm-eng aosp_arm64-eng aosp_x86-eng aosp_x86_64-eng omni_emerald-eng omni_emerald-userdebug twrp_emerald-eng twrp_emerald-userdebug'\''
+var_cache_HOST_PREBUILT_TAG='\''linux-x86'\''
+var_cache_OUT_DIR='\''/home/runner/orangefox/out'\''
+var_cache_PRODUCT_OUT='\''/home/runner/orangefox/out/target/product/emerald'\''
+var_cache_TARGET_ARCH='\''arm64'\''
+var_cache_TARGET_BUILD_VARIANT='\''eng'\''
+var_cache_TARGET_DEVICE='\''emerald'\''
+var_cache_TARGET_GCC_VERSION='\''4.9'\''
+var_cache_TARGET_PLATFORM_VERSION='\''SP2A'\''
+var_cache_TARGET_PRODUCT='\''twrp_emerald'\''
+var_cache_print='\'''\''
+var_cache_report_config='\''============================================
+PLATFORM_VERSION_CODENAME=REL
+PLATFORM_VERSION=12
+TARGET_PRODUCT=twrp_emerald
+TARGET_BUILD_VARIANT=eng
+TARGET_BUILD_TYPE=release
+TARGET_ARCH=arm64
+TARGET_ARCH_VARIANT=armv8-a
+TARGET_CPU_VARIANT=generic
+TARGET_2ND_ARCH=arm
+TARGET_2ND_ARCH_VARIANT=armv7-a-neon
+TARGET_2ND_CPU_VARIANT=generic
+HOST_ARCH=x86_64
+HOST_2ND_ARCH=x86
+HOST_OS=linux
+HOST_OS_EXTRA=Linux-6.8.0-1070-azure-x86_64-Ubuntu-22.04.5-LTS
+HOST_CROSS_OS=windows
+HOST_CROSS_ARCH=x86
+HOST_CROSS_2ND_ARCH=x86_64
+HOST_BUILD_TYPE=release
+BUILD_ID=SP2A.220405.004
+OUT_DIR=/home/runner/orangefox/out
+============================================'\''
+abs_var_cache_ANDROID_CLANG_PREBUILTS='\''/home/runner/orangefox/prebuilts/clang/host/linux-x86'\''
+abs_var_cache_ANDROID_GCC_PREBUILTS='\''/home/runner/orangefox/prebuilts/gcc/linux-x86'\''
+abs_var_cache_ANDROID_JAVA_HOME='\''/home/runner/orangefox/prebuilts/jdk/jdk11/linux-x86'\''
+abs_var_cache_ANDROID_JAVA_TOOLCHAIN='\''/home/runner/orangefox/prebuilts/jdk/jdk11/linux-x86/bin'\''
+abs_var_cache_ANDROID_PREBUILTS='\''/home/runner/orangefox/prebuilt/linux-x86'\''
+abs_var_cache_HOST_OUT='\''/home/runner/orangefox/out/host/linux-x86'\''
+abs_var_cache_HOST_OUT_TESTCASES='\''/home/runner/orangefox/out/host/linux-x86/testcases'\''
+abs_var_cache_PRODUCT_OUT='\''/home/runner/orangefox/out/target/product/emerald'\''
+abs_var_cache_SOONG_HOST_OUT='\''/home/runner/orangefox/out/soong/host/linux-x86'\''
+abs_var_cache_TARGET_OUT_TESTCASES='\''/home/runner/orangefox/out/target/product/emerald/testcases'\''
+abs_var_cache_print='\'''\'''
+++ var_cache_2ND_TARGET_GCC_VERSION=4.9
+++ var_cache_ANDROID_BUILD_PATHS=/home/runner/orangefox/out/soong/host/linux-x86/bin:/home/runner/orangefox/out/host/linux-x86/bin
+++ var_cache_COMMON_LUNCH_CHOICES='aosp_arm-eng aosp_arm64-eng aosp_x86-eng aosp_x86_64-eng omni_emerald-eng omni_emerald-userdebug twrp_emerald-eng twrp_emerald-userdebug'
+++ var_cache_HOST_PREBUILT_TAG=linux-x86
+++ var_cache_OUT_DIR=/home/runner/orangefox/out
+++ var_cache_PRODUCT_OUT=/home/runner/orangefox/out/target/product/emerald
+++ var_cache_TARGET_ARCH=arm64
+++ var_cache_TARGET_BUILD_VARIANT=eng
+++ var_cache_TARGET_DEVICE=emerald
+++ var_cache_TARGET_GCC_VERSION=4.9
+++ var_cache_TARGET_PLATFORM_VERSION=SP2A
+++ var_cache_TARGET_PRODUCT=twrp_emerald
+++ var_cache_print=
+++ var_cache_report_config='============================================
+PLATFORM_VERSION_CODENAME=REL
+PLATFORM_VERSION=12
+TARGET_PRODUCT=twrp_emerald
+TARGET_BUILD_VARIANT=eng
+TARGET_BUILD_TYPE=release
+TARGET_ARCH=arm64
+TARGET_ARCH_VARIANT=armv8-a
+TARGET_CPU_VARIANT=generic
+TARGET_2ND_ARCH=arm
+TARGET_2ND_ARCH_VARIANT=armv7-a-neon
+TARGET_2ND_CPU_VARIANT=generic
+HOST_ARCH=x86_64
+HOST_2ND_ARCH=x86
+HOST_OS=linux
+HOST_OS_EXTRA=Linux-6.8.0-1070-azure-x86_64-Ubuntu-22.04.5-LTS
+HOST_CROSS_OS=windows
+HOST_CROSS_ARCH=x86
+HOST_CROSS_2ND_ARCH=x86_64
+HOST_BUILD_TYPE=release
+BUILD_ID=SP2A.220405.004
+OUT_DIR=/home/runner/orangefox/out
+============================================'
+++ abs_var_cache_ANDROID_CLANG_PREBUILTS=/home/runner/orangefox/prebuilts/clang/host/linux-x86
+++ abs_var_cache_ANDROID_GCC_PREBUILTS=/home/runner/orangefox/prebuilts/gcc/linux-x86
+++ abs_var_cache_ANDROID_JAVA_HOME=/home/runner/orangefox/prebuilts/jdk/jdk11/linux-x86
+++ abs_var_cache_ANDROID_JAVA_TOOLCHAIN=/home/runner/orangefox/prebuilts/jdk/jdk11/linux-x86/bin
+++ abs_var_cache_ANDROID_PREBUILTS=/home/runner/orangefox/prebuilt/linux-x86
+++ abs_var_cache_HOST_OUT=/home/runner/orangefox/out/host/linux-x86
+++ abs_var_cache_HOST_OUT_TESTCASES=/home/runner/orangefox/out/host/linux-x86/testcases
+++ abs_var_cache_PRODUCT_OUT=/home/runner/orangefox/out/target/product/emerald
+++ abs_var_cache_SOONG_HOST_OUT=/home/runner/orangefox/out/soong/host/linux-x86
+++ abs_var_cache_TARGET_OUT_TESTCASES=/home/runner/orangefox/out/target/product/emerald/testcases
+++ abs_var_cache_print=
++ ret=0
++ unset build_dicts_script
++ '[' 0 -ne 0 ']'
++ BUILD_VAR_CACHE_READY=true
++ '[' 0 -ne 0 ']'
++ '[' -z twrp_emerald -o -z eng ']'
+++ get_build_var TARGET_PRODUCT
+++ '[' true = true ']'
+++ eval 'echo "${var_cache_TARGET_PRODUCT}"'
++++ echo twrp_emerald
+++ return 0
++ export TARGET_PRODUCT=twrp_emerald
++ TARGET_PRODUCT=twrp_emerald
+++ get_build_var TARGET_BUILD_VARIANT
+++ '[' true = true ']'
+++ eval 'echo "${var_cache_TARGET_BUILD_VARIANT}"'
++++ echo eng
+++ return 0
++ export TARGET_BUILD_VARIANT=eng
++ TARGET_BUILD_VARIANT=eng
++ '[' -n '' ']'
++ unset TARGET_PLATFORM_VERSION
++ export TARGET_BUILD_TYPE=release
++ TARGET_BUILD_TYPE=release
++ [[ -n '' ]]
++ echo
+
++ set_stuff_for_environment
++ setpaths
+++ gettop
+++ local TOPFILE=build/make/core/envsetup.mk
+++ '[' -n /home/runner/orangefox -a -f /home/runner/orangefox/build/make/core/envsetup.mk ']'
+++ cd /home/runner/orangefox
+++ PWD=
+++ /bin/pwd
++ local T=/home/runner/orangefox
++ '[' '!' /home/runner/orangefox ']'
++ '[' -n '' ']'
++ '[' -n '' ']'
+++ getprebuilt
+++ get_abs_build_var ANDROID_PREBUILTS
+++ '[' true = true ']'
+++ eval 'echo "${abs_var_cache_ANDROID_PREBUILTS}"'
++++ echo /home/runner/orangefox/prebuilt/linux-x86
+++ return
++ local prebuiltdir=/home/runner/orangefox/prebuilt/linux-x86
+++ get_abs_build_var ANDROID_GCC_PREBUILTS
+++ '[' true = true ']'
+++ eval 'echo "${abs_var_cache_ANDROID_GCC_PREBUILTS}"'
++++ echo /home/runner/orangefox/prebuilts/gcc/linux-x86
+++ return
++ local gccprebuiltdir=/home/runner/orangefox/prebuilts/gcc/linux-x86
+++ get_build_var TARGET_GCC_VERSION
+++ '[' true = true ']'
+++ eval 'echo "${var_cache_TARGET_GCC_VERSION}"'
++++ echo 4.9
+++ return 0
++ local targetgccversion=4.9
+++ get_build_var 2ND_TARGET_GCC_VERSION
+++ '[' true = true ']'
+++ eval 'echo "${var_cache_2ND_TARGET_GCC_VERSION}"'
++++ echo 4.9
+++ return 0
++ local targetgccversion2=4.9
++ export TARGET_GCC_VERSION=4.9
++ TARGET_GCC_VERSION=4.9
++ export ANDROID_TOOLCHAIN=
++ ANDROID_TOOLCHAIN=
++ export ANDROID_TOOLCHAIN_2ND_ARCH=
++ ANDROID_TOOLCHAIN_2ND_ARCH=
+++ get_build_var TARGET_ARCH
+++ '[' true = true ']'
+++ eval 'echo "${var_cache_TARGET_ARCH}"'
++++ echo arm64
+++ return 0
++ local ARCH=arm64
++ local toolchaindir toolchaindir2=
++ case $ARCH in
++ toolchaindir=aarch64/aarch64-linux-android-4.9/bin
++ toolchaindir2=arm/arm-linux-androideabi-4.9/bin
++ '[' -d /home/runner/orangefox/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9/bin ']'
++ export ANDROID_TOOLCHAIN=/home/runner/orangefox/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9/bin
++ ANDROID_TOOLCHAIN=/home/runner/orangefox/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9/bin
++ '[' arm/arm-linux-androideabi-4.9/bin -a -d /home/runner/orangefox/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9/bin ']'
++ export ANDROID_TOOLCHAIN_2ND_ARCH=/home/runner/orangefox/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9/bin
++ ANDROID_TOOLCHAIN_2ND_ARCH=/home/runner/orangefox/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9/bin
++ export ANDROID_DEV_SCRIPTS=/home/runner/orangefox/development/scripts:/home/runner/orangefox/prebuilts/devtools/tools:/home/runner/orangefox/external/selinux/prebuilts/bin
++ ANDROID_DEV_SCRIPTS=/home/runner/orangefox/development/scripts:/home/runner/orangefox/prebuilts/devtools/tools:/home/runner/orangefox/external/selinux/prebuilts/bin
++ case $(uname -s) in
+++ uname -s
++ export ANDROID_DEV_SCRIPTS=/home/runner/orangefox/development/scripts:/home/runner/orangefox/prebuilts/devtools/tools:/home/runner/orangefox/external/selinux/prebuilts/bin:/home/runner/orangefox/prebuilts/misc/linux-x86/dtc:/home/runner/orangefox/prebuilts/misc/linux-x86/libufdt
++ ANDROID_DEV_SCRIPTS=/home/runner/orangefox/development/scripts:/home/runner/orangefox/prebuilts/devtools/tools:/home/runner/orangefox/external/selinux/prebuilts/bin:/home/runner/orangefox/prebuilts/misc/linux-x86/dtc:/home/runner/orangefox/prebuilts/misc/linux-x86/libufdt
+++ get_build_var ANDROID_BUILD_PATHS
+++ '[' true = true ']'
+++ eval 'echo "${var_cache_ANDROID_BUILD_PATHS}"'
++++ echo /home/runner/orangefox/out/soong/host/linux-x86/bin:/home/runner/orangefox/out/host/linux-x86/bin
+++ return 0
++ ANDROID_BUILD_PATHS=/home/runner/orangefox/out/soong/host/linux-x86/bin:/home/runner/orangefox/out/host/linux-x86/bin:/home/runner/orangefox/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9/bin
++ '[' -n /home/runner/orangefox/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9/bin ']'
++ ANDROID_BUILD_PATHS=/home/runner/orangefox/out/soong/host/linux-x86/bin:/home/runner/orangefox/out/host/linux-x86/bin:/home/runner/orangefox/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9/bin:/home/runner/orangefox/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9/bin
++ ANDROID_BUILD_PATHS=/home/runner/orangefox/out/soong/host/linux-x86/bin:/home/runner/orangefox/out/host/linux-x86/bin:/home/runner/orangefox/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9/bin:/home/runner/orangefox/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9/bin:/home/runner/orangefox/development/scripts:/home/runner/orangefox/prebuilts/devtools/tools:/home/runner/orangefox/external/selinux/prebuilts/bin:/home/runner/orangefox/prebuilts/misc/linux-x86/dtc:/home/runner/orangefox/prebuilts/misc/linux-x86/libufdt
+++ get_abs_build_var ANDROID_CLANG_PREBUILTS
+++ '[' true = true ']'
+++ eval 'echo "${abs_var_cache_ANDROID_CLANG_PREBUILTS}"'
++++ echo /home/runner/orangefox/prebuilts/clang/host/linux-x86
+++ return
++ local ANDROID_LLVM_BINUTILS=/home/runner/orangefox/prebuilts/clang/host/linux-x86/llvm-binutils-stable
++ ANDROID_BUILD_PATHS=/home/runner/orangefox/out/soong/host/linux-x86/bin:/home/runner/orangefox/out/host/linux-x86/bin:/home/runner/orangefox/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9/bin:/home/runner/orangefox/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9/bin:/home/runner/orangefox/development/scripts:/home/runner/orangefox/prebuilts/devtools/tools:/home/runner/orangefox/external/selinux/prebuilts/bin:/home/runner/orangefox/prebuilts/misc/linux-x86/dtc:/home/runner/orangefox/prebuilts/misc/linux-x86/libufdt:/home/runner/orangefox/prebuilts/clang/host/linux-x86/llvm-binutils-stable
++ export ASAN_SYMBOLIZER_PATH=/home/runner/orangefox/prebuilts/clang/host/linux-x86/llvm-binutils-stable/llvm-symbolizer
++ ASAN_SYMBOLIZER_PATH=/home/runner/orangefox/prebuilts/clang/host/linux-x86/llvm-binutils-stable/llvm-symbolizer
++ case $(uname -s) in
+++ uname -s
++ ANDROID_EMULATOR_PREBUILTS=/home/runner/orangefox/prebuilts/android-emulator/linux-x86_64
++ '[' -n /home/runner/orangefox/prebuilts/android-emulator/linux-x86_64 -a -d /home/runner/orangefox/prebuilts/android-emulator/linux-x86_64 ']'
+++ get_build_var HOST_PREBUILT_TAG
+++ '[' true = true ']'
+++ eval 'echo "${var_cache_HOST_PREBUILT_TAG}"'
++++ echo linux-x86
+++ return 0
++ local os_arch=linux-x86
++ local ACLOUD_PATH=/home/runner/orangefox/prebuilts/asuite/acloud/linux-x86
++ local AIDEGEN_PATH=/home/runner/orangefox/prebuilts/asuite/aidegen/linux-x86
++ local ATEST_PATH=/home/runner/orangefox/prebuilts/asuite/atest/linux-x86
++ export ANDROID_BUILD_PATHS=/home/runner/orangefox/out/soong/host/linux-x86/bin:/home/runner/orangefox/out/host/linux-x86/bin:/home/runner/orangefox/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9/bin:/home/runner/orangefox/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9/bin:/home/runner/orangefox/development/scripts:/home/runner/orangefox/prebuilts/devtools/tools:/home/runner/orangefox/external/selinux/prebuilts/bin:/home/runner/orangefox/prebuilts/misc/linux-x86/dtc:/home/runner/orangefox/prebuilts/misc/linux-x86/libufdt:/home/runner/orangefox/prebuilts/clang/host/linux-x86/llvm-binutils-stable:/home/runner/orangefox/prebuilts/asuite/acloud/linux-x86:/home/runner/orangefox/prebuilts/asuite/aidegen/linux-x86:/home/runner/orangefox/prebuilts/asuite/atest/linux-x86:
++ ANDROID_BUILD_PATHS=/home/runner/orangefox/out/soong/host/linux-x86/bin:/home/runner/orangefox/out/host/linux-x86/bin:/home/runner/orangefox/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9/bin:/home/runner/orangefox/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9/bin:/home/runner/orangefox/development/scripts:/home/runner/orangefox/prebuilts/devtools/tools:/home/runner/orangefox/external/selinux/prebuilts/bin:/home/runner/orangefox/prebuilts/misc/linux-x86/dtc:/home/runner/orangefox/prebuilts/misc/linux-x86/libufdt:/home/runner/orangefox/prebuilts/clang/host/linux-x86/llvm-binutils-stable:/home/runner/orangefox/prebuilts/asuite/acloud/linux-x86:/home/runner/orangefox/prebuilts/asuite/aidegen/linux-x86:/home/runner/orangefox/prebuilts/asuite/atest/linux-x86:
++ export PATH=/home/runner/orangefox/out/soong/host/linux-x86/bin:/home/runner/orangefox/out/host/linux-x86/bin:/home/runner/orangefox/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9/bin:/home/runner/orangefox/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9/bin:/home/runner/orangefox/development/scripts:/home/runner/orangefox/prebuilts/devtools/tools:/home/runner/orangefox/external/selinux/prebuilts/bin:/home/runner/orangefox/prebuilts/misc/linux-x86/dtc:/home/runner/orangefox/prebuilts/misc/linux-x86/libufdt:/home/runner/orangefox/prebuilts/clang/host/linux-x86/llvm-binutils-stable:/home/runner/orangefox/prebuilts/asuite/acloud/linux-x86:/home/runner/orangefox/prebuilts/asuite/aidegen/linux-x86:/home/runner/orangefox/prebuilts/asuite/atest/linux-x86:/snap/bin:/home/runner/.local/bin:/opt/pipx_bin:/home/runner/.cargo/bin:/home/runner/.config/composer/vendor/bin:/usr/local/.ghcup/bin:/home/runner/.dotnet/tools:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
++ PATH=/home/runner/orangefox/out/soong/host/linux-x86/bin:/home/runner/orangefox/out/host/linux-x86/bin:/home/runner/orangefox/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9/bin:/home/runner/orangefox/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9/bin:/home/runner/orangefox/development/scripts:/home/runner/orangefox/prebuilts/devtools/tools:/home/runner/orangefox/external/selinux/prebuilts/bin:/home/runner/orangefox/prebuilts/misc/linux-x86/dtc:/home/runner/orangefox/prebuilts/misc/linux-x86/libufdt:/home/runner/orangefox/prebuilts/clang/host/linux-x86/llvm-binutils-stable:/home/runner/orangefox/prebuilts/asuite/acloud/linux-x86:/home/runner/orangefox/prebuilts/asuite/aidegen/linux-x86:/home/runner/orangefox/prebuilts/asuite/atest/linux-x86:/snap/bin:/home/runner/.local/bin:/opt/pipx_bin:/home/runner/.cargo/bin:/home/runner/.config/composer/vendor/bin:/usr/local/.ghcup/bin:/home/runner/.dotnet/tools:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
++ '[' -n ']'
++ export PYTHONPATH=
++ PYTHONPATH=
++ export ANDROID_PYTHONPATH=/home/runner/orangefox/development/python-packages:
++ ANDROID_PYTHONPATH=/home/runner/orangefox/development/python-packages:
++ '[' -n ']'
++ ANDROID_PYTHONPATH=/home/runner/orangefox/development/python-packages:
++ export PYTHONPATH=/home/runner/orangefox/development/python-packages:
++ PYTHONPATH=/home/runner/orangefox/development/python-packages:
+++ get_abs_build_var ANDROID_JAVA_HOME
+++ '[' true = true ']'
+++ eval 'echo "${abs_var_cache_ANDROID_JAVA_HOME}"'
++++ echo /home/runner/orangefox/prebuilts/jdk/jdk11/linux-x86
+++ return
++ export ANDROID_JAVA_HOME=/home/runner/orangefox/prebuilts/jdk/jdk11/linux-x86
++ ANDROID_JAVA_HOME=/home/runner/orangefox/prebuilts/jdk/jdk11/linux-x86
++ export JAVA_HOME=/home/runner/orangefox/prebuilts/jdk/jdk11/linux-x86
++ JAVA_HOME=/home/runner/orangefox/prebuilts/jdk/jdk11/linux-x86
+++ get_abs_build_var ANDROID_JAVA_TOOLCHAIN
+++ '[' true = true ']'
+++ eval 'echo "${abs_var_cache_ANDROID_JAVA_TOOLCHAIN}"'
++++ echo /home/runner/orangefox/prebuilts/jdk/jdk11/linux-x86/bin
+++ return
++ export ANDROID_JAVA_TOOLCHAIN=/home/runner/orangefox/prebuilts/jdk/jdk11/linux-x86/bin
++ ANDROID_JAVA_TOOLCHAIN=/home/runner/orangefox/prebuilts/jdk/jdk11/linux-x86/bin
++ export ANDROID_PRE_BUILD_PATHS=/home/runner/orangefox/prebuilts/jdk/jdk11/linux-x86/bin:
++ ANDROID_PRE_BUILD_PATHS=/home/runner/orangefox/prebuilts/jdk/jdk11/linux-x86/bin:
++ export PATH=/home/runner/orangefox/prebuilts/jdk/jdk11/linux-x86/bin:/home/runner/orangefox/out/soong/host/linux-x86/bin:/home/runner/orangefox/out/host/linux-x86/bin:/home/runner/orangefox/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9/bin:/home/runner/orangefox/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9/bin:/home/runner/orangefox/development/scripts:/home/runner/orangefox/prebuilts/devtools/tools:/home/runner/orangefox/external/selinux/prebuilts/bin:/home/runner/orangefox/prebuilts/misc/linux-x86/dtc:/home/runner/orangefox/prebuilts/misc/linux-x86/libufdt:/home/runner/orangefox/prebuilts/clang/host/linux-x86/llvm-binutils-stable:/home/runner/orangefox/prebuilts/asuite/acloud/linux-x86:/home/runner/orangefox/prebuilts/asuite/aidegen/linux-x86:/home/runner/orangefox/prebuilts/asuite/atest/linux-x86:/snap/bin:/home/runner/.local/bin:/opt/pipx_bin:/home/runner/.cargo/bin:/home/runner/.config/composer/vendor/bin:/usr/local/.ghcup/bin:/home/runner/.dotnet/tools:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
++ PATH=/home/runner/orangefox/prebuilts/jdk/jdk11/linux-x86/bin:/home/runner/orangefox/out/soong/host/linux-x86/bin:/home/runner/orangefox/out/host/linux-x86/bin:/home/runner/orangefox/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9/bin:/home/runner/orangefox/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9/bin:/home/runner/orangefox/development/scripts:/home/runner/orangefox/prebuilts/devtools/tools:/home/runner/orangefox/external/selinux/prebuilts/bin:/home/runner/orangefox/prebuilts/misc/linux-x86/dtc:/home/runner/orangefox/prebuilts/misc/linux-x86/libufdt:/home/runner/orangefox/prebuilts/clang/host/linux-x86/llvm-binutils-stable:/home/runner/orangefox/prebuilts/asuite/acloud/linux-x86:/home/runner/orangefox/prebuilts/asuite/aidegen/linux-x86:/home/runner/orangefox/prebuilts/asuite/atest/linux-x86:/snap/bin:/home/runner/.local/bin:/opt/pipx_bin:/home/runner/.cargo/bin:/home/runner/.config/composer/vendor/bin:/usr/local/.ghcup/bin:/home/runner/.dotnet/tools:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
++ unset ANDROID_PRODUCT_OUT
+++ get_abs_build_var PRODUCT_OUT
+++ '[' true = true ']'
+++ eval 'echo "${abs_var_cache_PRODUCT_OUT}"'
++++ echo /home/runner/orangefox/out/target/product/emerald
+++ return
++ export ANDROID_PRODUCT_OUT=/home/runner/orangefox/out/target/product/emerald
++ ANDROID_PRODUCT_OUT=/home/runner/orangefox/out/target/product/emerald
++ export OUT=/home/runner/orangefox/out/target/product/emerald
++ OUT=/home/runner/orangefox/out/target/product/emerald
++ unset ANDROID_HOST_OUT
+++ get_abs_build_var HOST_OUT
+++ '[' true = true ']'
+++ eval 'echo "${abs_var_cache_HOST_OUT}"'
++++ echo /home/runner/orangefox/out/host/linux-x86
+++ return
++ export ANDROID_HOST_OUT=/home/runner/orangefox/out/host/linux-x86
++ ANDROID_HOST_OUT=/home/runner/orangefox/out/host/linux-x86
++ unset ANDROID_SOONG_HOST_OUT
+++ get_abs_build_var SOONG_HOST_OUT
+++ '[' true = true ']'
+++ eval 'echo "${abs_var_cache_SOONG_HOST_OUT}"'
++++ echo /home/runner/orangefox/out/soong/host/linux-x86
+++ return
++ export ANDROID_SOONG_HOST_OUT=/home/runner/orangefox/out/soong/host/linux-x86
++ ANDROID_SOONG_HOST_OUT=/home/runner/orangefox/out/soong/host/linux-x86
++ unset ANDROID_HOST_OUT_TESTCASES
+++ get_abs_build_var HOST_OUT_TESTCASES
+++ '[' true = true ']'
+++ eval 'echo "${abs_var_cache_HOST_OUT_TESTCASES}"'
++++ echo /home/runner/orangefox/out/host/linux-x86/testcases
+++ return
++ export ANDROID_HOST_OUT_TESTCASES=/home/runner/orangefox/out/host/linux-x86/testcases
++ ANDROID_HOST_OUT_TESTCASES=/home/runner/orangefox/out/host/linux-x86/testcases
++ unset ANDROID_TARGET_OUT_TESTCASES
+++ get_abs_build_var TARGET_OUT_TESTCASES
+++ '[' true = true ']'
+++ eval 'echo "${abs_var_cache_TARGET_OUT_TESTCASES}"'
++++ echo /home/runner/orangefox/out/target/product/emerald/testcases
+++ return
++ export ANDROID_TARGET_OUT_TESTCASES=/home/runner/orangefox/out/target/product/emerald/testcases
++ ANDROID_TARGET_OUT_TESTCASES=/home/runner/orangefox/out/target/product/emerald/testcases
++ set_sequence_number
++ export BUILD_ENV_SEQUENCE_NUMBER=13
++ BUILD_ENV_SEQUENCE_NUMBER=13
++ export 'GCC_COLORS=error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
++ GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
++ [[ -n '' ]]
++ printconfig
+++ gettop
+++ local TOPFILE=build/make/core/envsetup.mk
+++ '[' -n /home/runner/orangefox -a -f /home/runner/orangefox/build/make/core/envsetup.mk ']'
+++ cd /home/runner/orangefox
+++ PWD=
+++ /bin/pwd
++ local T=/home/runner/orangefox
++ '[' '!' /home/runner/orangefox ']'
++ get_build_var report_config
++ '[' true = true ']'
++ eval 'echo "${var_cache_report_config}"'
+++ echo '============================================
+PLATFORM_VERSION_CODENAME=REL
+PLATFORM_VERSION=12
+TARGET_PRODUCT=twrp_emerald
+TARGET_BUILD_VARIANT=eng
+TARGET_BUILD_TYPE=release
+TARGET_ARCH=arm64
+TARGET_ARCH_VARIANT=armv8-a
+TARGET_CPU_VARIANT=generic
+TARGET_2ND_ARCH=arm
+TARGET_2ND_ARCH_VARIANT=armv7-a-neon
+TARGET_2ND_CPU_VARIANT=generic
+HOST_ARCH=x86_64
+HOST_2ND_ARCH=x86
+HOST_OS=linux
+HOST_OS_EXTRA=Linux-6.8.0-1070-azure-x86_64-Ubuntu-22.04.5-LTS
+HOST_CROSS_OS=windows
+HOST_CROSS_ARCH=x86
+HOST_CROSS_2ND_ARCH=x86_64
+HOST_BUILD_TYPE=release
+BUILD_ID=SP2A.220405.004
+OUT_DIR=/home/runner/orangefox/out
+============================================'
+============================================
+PLATFORM_VERSION_CODENAME=REL
+PLATFORM_VERSION=12
+TARGET_PRODUCT=twrp_emerald
+TARGET_BUILD_VARIANT=eng
+TARGET_BUILD_TYPE=release
+TARGET_ARCH=arm64
+TARGET_ARCH_VARIANT=armv8-a
+TARGET_CPU_VARIANT=generic
+TARGET_2ND_ARCH=arm
+TARGET_2ND_ARCH_VARIANT=armv7-a-neon
+TARGET_2ND_CPU_VARIANT=generic
+HOST_ARCH=x86_64
+HOST_2ND_ARCH=x86
+HOST_OS=linux
+HOST_OS_EXTRA=Linux-6.8.0-1070-azure-x86_64-Ubuntu-22.04.5-LTS
+HOST_CROSS_OS=windows
+HOST_CROSS_ARCH=x86
+HOST_CROSS_2ND_ARCH=x86_64
+HOST_BUILD_TYPE=release
+BUILD_ID=SP2A.220405.004
+OUT_DIR=/home/runner/orangefox/out
+============================================
++ return 0
++ '[' '' '!=' 1 ']'
+++ cut -d_ -f2
++ local DEVICE=emerald
++ mkdir -p /tmp/emerald
++ export
++ destroy_build_var_cache
++ unset BUILD_VAR_CACHE_READY
++ local v
++ for v in $cached_vars
++ unset var_cache_2ND_TARGET_GCC_VERSION
++ unset cached_vars
++ for v in $cached_abs_vars
++ unset abs_var_cache_ANDROID_CLANG_PREBUILTS
++ unset cached_abs_vars
++ LUNCH_STATUS=0
++ echo '=== Lunch result code: 0 ==='
+=== Lunch result code: 0 ===
++ '[' 0 -ne 0 ']'
++ echo '=== STARTING COMPILATION ==='
+=== STARTING COMPILATION ===
+++ nproc --all
++ mka adbd vendorbootimage recoveryimage -j4
++ m adbd vendorbootimage recoveryimage -j4
++ _trigger_build all-modules adbd vendorbootimage recoveryimage -j4
++ local -r bc=all-modules
++ shift
+++ gettop
+++ local TOPFILE=build/make/core/envsetup.mk
+++ '[' -n /home/runner/orangefox -a -f /home/runner/orangefox/build/make/core/envsetup.mk ']'
+++ cd /home/runner/orangefox
+++ PWD=
+++ /bin/pwd
++ T=/home/runner/orangefox
+++ pwd
++ _wrap_build /home/runner/orangefox/build/soong/soong_ui.bash --build-mode --all-modules --dir=/home/runner/orangefox adbd vendorbootimage recoveryimage -j4
++ [[ '' == true ]]
+++ date +%s
++ local start_time=1793727979
++ /home/runner/orangefox/build/soong/soong_ui.bash --build-mode --all-modules --dir=/home/runner/orangefox adbd vendorbootimage recoveryimage -j4
+17:46:19 ************************************************************
+17:46:19 You are building on a machine with 15.6GB of RAM
+17:46:19 
+17:46:19 The minimum required amount of free memory is around 16GB,
+17:46:19 and even with that, some configurations may not work.
+17:46:19 
+17:46:19 If you run into segfaults or other errors, try reducing your
+17:46:19 -j value.
+17:46:19 ************************************************************
+[1mbuild/make/core/soong_config.mk:194: [35mwarning: [0m[1mBOARD_PLAT_PUBLIC_SEPOLICY_DIR has been deprecated. Use SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS instead.[0m
+[1mbuild/make/core/soong_config.mk:195: [35mwarning: [0m[1mBOARD_PLAT_PRIVATE_SEPOLICY_DIR has been deprecated. Use SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS instead.[0m
+============================================
+PLATFORM_VERSION_CODENAME=REL
+PLATFORM_VERSION=12
+TARGET_PRODUCT=twrp_emerald
+TARGET_BUILD_VARIANT=eng
+TARGET_BUILD_TYPE=release
+TARGET_ARCH=arm64
+TARGET_ARCH_VARIANT=armv8-a
+TARGET_CPU_VARIANT=generic
+TARGET_2ND_ARCH=arm
+TARGET_2ND_ARCH_VARIANT=armv7-a-neon
+TARGET_2ND_CPU_VARIANT=generic
+HOST_ARCH=x86_64
+HOST_2ND_ARCH=x86
+HOST_OS=linux
+HOST_OS_EXTRA=Linux-6.8.0-1070-azure-x86_64-Ubuntu-22.04.5-LTS
+HOST_CROSS_OS=windows
+HOST_CROSS_ARCH=x86
+HOST_CROSS_2ND_ARCH=x86_64
+HOST_BUILD_TYPE=release
+BUILD_ID=SP2A.220405.004
+OUT_DIR=/home/runner/orangefox/out
+============================================
+[  0% 1/241] compile /home/runner/orangefox/out/soong/.bootstrap/blueprint-deptools/pkg/github.com/google/blueprint/deptools.a
+[  0% 2/241] compile /home/runner/orangefox/out/soong/.bootstrap/blueprint-parser/pkg/github.com/google/blueprint/parser.a
+[  1% 3/241] compile /home/runner/orangefox/out/soong/.bootstrap/blueprint-parser/test/github.com/google/blueprint/parser.a
+[  1% 4/241] compile /home/runner/orangefox/out/soong/.bootstrap/blueprint-pathtools/test/github.com/google/blueprint/pathtools.a
+[  2% 5/241] compile /home/runner/orangefox/out/soong/.bootstrap/blueprint-pathtools/pkg/github.com/google/blueprint/pathtools.a
+[  2% 6/241] compile /home/runner/orangefox/out/soong/.bootstrap/blueprint-proptools/pkg/github.com/google/blueprint/proptools.a
+[  2% 7/241] compile /home/runner/orangefox/out/soong/.bootstrap/golang-protobuf-proto/test/github.com/golang/protobuf/proto.a
+[  3% 8/241] compile /home/runner/orangefox/out/soong/.bootstrap/blueprint-proptools/test/github.com/google/blueprint/proptools.a
+[  3% 9/241] compile /home/runner/orangefox/out/soong/.bootstrap/gotestmain/obj/gotestmain.a
+[  4% 10/241] compile /home/runner/orangefox/out/soong/.bootstrap/golang-protobuf-proto/pkg/github.com/golang/protobuf/proto.a
+[  4% 11/241] compile /home/runner/orangefox/out/soong/.bootstrap/gotestrunner/obj/gotestrunner.a
+[  4% 12/241] link /home/runner/orangefox/out/soong/.bootstrap/gotestmain/obj/a.out
+[  5% 13/241] cp /home/runner/orangefox/out/soong/.bootstrap/bin/gotestmain
+[  5% 14/241] gotestmain /home/runner/orangefox/out/soong/.bootstrap/aidl-soong-rules/test/test.go
+[  6% 15/241] gotestmain /home/runner/orangefox/out/soong/.bootstrap/blueprint/test/test.go
+[  6% 16/241] gotestmain /home/runner/orangefox/out/soong/.bootstrap/blueprint-bootstrap-bpdoc/test/test.go
+[  7% 17/241] gotestmain /home/runner/orangefox/out/soong/.bootstrap/blueprint-parser/test/test.go
+[  7% 18/241] compile /home/runner/orangefox/out/soong/.bootstrap/blueprint-parser/test/test.a
+[  7% 19/241] compile /home/runner/orangefox/out/soong/.bootstrap/blueprint/test/github.com/google/blueprint.a
+[  8% 20/241] compile /home/runner/orangefox/out/soong/.bootstrap/blueprint/pkg/github.com/google/blueprint.a
+[  8% 21/241] link /home/runner/orangefox/out/soong/.bootstrap/gotestrunner/obj/a.out
+[  9% 22/241] compile /home/runner/orangefox/out/soong/.bootstrap/blueprint/test/test.a
+[  9% 23/241] compile /home/runner/orangefox/out/soong/.bootstrap/blueprint-bootstrap-bpdoc/pkg/github.com/google/blueprint/bootstrap/bpdoc.a
+[  9% 24/241] compile /home/runner/orangefox/out/soong/.bootstrap/blueprint-bootstrap-bpdoc/test/github.com/google/blueprint/bootstrap/bpdoc.a
+[ 10% 25/241] compile /home/runner/orangefox/out/soong/.bootstrap/blueprint-bootstrap-bpdoc/test/test.a
+[ 10% 26/241] link /home/runner/orangefox/out/soong/.bootstrap/blueprint-parser/test/test
+[ 11% 27/241] gotestmain /home/runner/orangefox/out/soong/.bootstrap/blueprint-pathtools/test/test.go
+[ 11% 28/241] compile /home/runner/orangefox/out/soong/.bootstrap/blueprint-pathtools/test/test.a
+[ 12% 29/241] compile /home/runner/orangefox/out/soong/.bootstrap/blueprint-bootstrap/pkg/github.com/google/blueprint/bootstrap.a
+[ 12% 30/241] gotestmain /home/runner/orangefox/out/soong/.bootstrap/blueprint-proptools/test/test.go
+[ 12% 31/241] compile /home/runner/orangefox/out/soong/.bootstrap/blueprint-proptools/test/test.a
+[ 13% 32/241] link /home/runner/orangefox/out/soong/.bootstrap/blueprint/test/test
+[ 13% 33/241] gotestmain /home/runner/orangefox/out/soong/.bootstrap/gki-soong-rules/test/test.go
+[ 14% 34/241] gotestmain /home/runner/orangefox/out/soong/.bootstrap/golang-protobuf-proto/test/test.go
+[ 14% 35/241] compile /home/runner/orangefox/out/soong/.bootstrap/golang-protobuf-proto/test/test.a
+[ 14% 36/241] link /home/runner/orangefox/out/soong/.bootstrap/blueprint-pathtools/test/test
+[ 15% 37/241] cp /home/runner/orangefox/out/soong/.bootstrap/bin/gotestrunner
+[ 15% 38/241] test github.com/google/blueprint
+[ 16% 39/241] test github.com/google/blueprint/parser
+[ 16% 40/241] link /home/runner/orangefox/out/soong/.bootstrap/blueprint-bootstrap-bpdoc/test/test
+[ 17% 41/241] test github.com/google/blueprint/bootstrap/bpdoc
+[ 17% 42/241] link /home/runner/orangefox/out/soong/.bootstrap/blueprint-proptools/test/test
+[ 17% 43/241] compile /home/runner/orangefox/out/soong/.bootstrap/loadplugins/obj/loadplugins.a
+[ 18% 44/241] test github.com/google/blueprint/proptools
+[ 18% 45/241] test github.com/google/blueprint/pathtools
+[ 19% 46/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong/pkg/android/soong.a
+[ 19% 47/241] link /home/runner/orangefox/out/soong/.bootstrap/golang-protobuf-proto/test/test
+[ 19% 48/241] compile /home/runner/orangefox/out/soong/.bootstrap/sbox_proto/pkg/android/soong/cmd/sbox/sbox_proto.a
+[ 20% 49/241] test github.com/golang/protobuf/proto
+[ 20% 50/241] gotestmain /home/runner/orangefox/out/soong/.bootstrap/soong-android/test/test.go
+[ 21% 51/241] gotestmain /home/runner/orangefox/out/soong/.bootstrap/soong-android-soongconfig/test/test.go
+[ 21% 52/241] gotestmain /home/runner/orangefox/out/soong/.bootstrap/soong-apex/test/test.go
+[ 21% 53/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-android-soongconfig/pkg/android/soong/android/soongconfig.a
+[ 22% 54/241] gotestmain /home/runner/orangefox/out/soong/.bootstrap/soong-bazel/test/test.go
+[ 22% 55/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-android-soongconfig/test/android/soong/android/soongconfig.a
+[ 23% 56/241] link /home/runner/orangefox/out/soong/.bootstrap/loadplugins/obj/a.out
+[ 23% 57/241] cp /home/runner/orangefox/out/soong/.bootstrap/bin/loadplugins
+[ 24% 58/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-android-soongconfig/test/test.a
+[ 24% 59/241] gotestmain /home/runner/orangefox/out/soong/.bootstrap/soong-bp2build/test/test.go
+[ 24% 60/241] gotestmain /home/runner/orangefox/out/soong/.bootstrap/soong-bpf/test/test.go
+[ 25% 61/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-bazel/test/android/soong/bazel.a
+[ 25% 62/241] gotestmain /home/runner/orangefox/out/soong/.bootstrap/soong-cc/test/test.go
+[ 26% 63/241] gotestmain /home/runner/orangefox/out/soong/.bootstrap/soong-cc-config/test/test.go
+[ 26% 64/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-bazel/pkg/android/soong/bazel.a
+[ 26% 65/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-bazel/test/test.a
+[ 27% 66/241] gotestmain /home/runner/orangefox/out/soong/.bootstrap/soong-cquery/test/test.go
+[ 27% 67/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-cquery/pkg/android/soong/bazel/cquery.a
+[ 28% 68/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-cquery/test/android/soong/bazel/cquery.a
+[ 28% 69/241] gotestmain /home/runner/orangefox/out/soong/.bootstrap/soong-dexpreopt/test/test.go
+[ 29% 70/241] gotestmain /home/runner/orangefox/out/soong/.bootstrap/soong-etc/test/test.go
+[ 29% 71/241] gotestmain /home/runner/orangefox/out/soong/.bootstrap/soong-filesystem/test/test.go
+[ 29% 72/241] gotestmain /home/runner/orangefox/out/soong/.bootstrap/soong-genrule/test/test.go
+[ 30% 73/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-cquery/test/test.a
+[ 30% 74/241] gotestmain /home/runner/orangefox/out/soong/.bootstrap/soong-java/test/test.go
+[ 31% 75/241] gotestmain /home/runner/orangefox/out/soong/.bootstrap/soong-kernel/test/test.go
+[ 31% 76/241] gotestmain /home/runner/orangefox/out/soong/.bootstrap/soong-linkerconfig/test/test.go
+[ 31% 77/241] gotestmain /home/runner/orangefox/out/soong/.bootstrap/soong-python/test/test.go
+[ 32% 78/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-remoteexec/test/android/soong/remoteexec.a
+[ 32% 79/241] link /home/runner/orangefox/out/soong/.bootstrap/soong-android-soongconfig/test/test
+[ 33% 80/241] gotestmain /home/runner/orangefox/out/soong/.bootstrap/soong-remoteexec/test/test.go
+[ 33% 81/241] test android/soong/android/soongconfig
+[ 34% 82/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-remoteexec/test/test.a
+[ 34% 83/241] link /home/runner/orangefox/out/soong/.bootstrap/soong-bazel/test/test
+[ 34% 84/241] test android/soong/bazel
+[ 35% 85/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-remoteexec/pkg/android/soong/remoteexec.a
+[ 35% 86/241] gotestmain /home/runner/orangefox/out/soong/.bootstrap/soong-response/test/test.go
+[ 36% 87/241] link /home/runner/orangefox/out/soong/.bootstrap/soong-cquery/test/test
+[ 36% 88/241] test android/soong/bazel/cquery
+[ 36% 89/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-response/pkg/android/soong/response.a
+[ 37% 90/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-response/test/android/soong/response.a
+[ 37% 91/241] gotestmain /home/runner/orangefox/out/soong/.bootstrap/soong-rust/test/test.go
+[ 38% 92/241] gotestmain /home/runner/orangefox/out/soong/.bootstrap/soong-sdk/test/test.go
+[ 38% 93/241] gotestmain /home/runner/orangefox/out/soong/.bootstrap/soong-sh/test/test.go
+[ 39% 94/241] gotestmain /home/runner/orangefox/out/soong/.bootstrap/soong-shared/test/test.go
+[ 39% 95/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-response/test/test.a
+[ 39% 96/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-shared/test/android/soong/shared.a
+[ 40% 97/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-shared/pkg/android/soong/shared.a
+[ 40% 98/241] gotestmain /home/runner/orangefox/out/soong/.bootstrap/soong-sysprop/test/test.go
+[ 41% 99/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-shared/test/test.a
+[ 41% 100/241] link /home/runner/orangefox/out/soong/.bootstrap/soong-remoteexec/test/test
+[ 41% 101/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-ui-metrics_proto/pkg/android/soong/ui/metrics/metrics_proto.a
+[ 42% 102/241] test android/soong/remoteexec
+[ 42% 103/241] link /home/runner/orangefox/out/soong/.bootstrap/soong-response/test/test
+[ 43% 104/241] test android/soong/response
+[ 43% 105/241] gotestmain /home/runner/orangefox/out/soong/.bootstrap/soong-xml/test/test.go
+[ 43% 106/241] create /home/runner/orangefox/out/soong/.bootstrap/soong_build/gen/plugin.go
+[ 44% 107/241] link /home/runner/orangefox/out/soong/.bootstrap/soong-shared/test/test
+[ 44% 108/241] test android/soong/shared
+[ 45% 109/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-android/pkg/android/soong/android.a
+[ 45% 110/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-bloaty/pkg/android/soong/bloaty.a
+[ 46% 111/241] compile /home/runner/orangefox/out/soong/.bootstrap/kernel-config-soong-rules/pkg/android/soong/kernel/configs.a
+[ 46% 112/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-cc-config/pkg/android/soong/cc/config.a
+[ 46% 113/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-cc-config/test/android/soong/cc/config.a
+[ 47% 114/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-cc-config/test/test.a
+[ 47% 115/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-dexpreopt/test/android/soong/dexpreopt.a
+[ 48% 116/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-dexpreopt/test/test.a
+[ 48% 117/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-dexpreopt/pkg/android/soong/dexpreopt.a
+[ 48% 118/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-etc/test/android/soong/etc.a
+[ 49% 119/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-etc/test/test.a
+[ 49% 120/241] link /home/runner/orangefox/out/soong/.bootstrap/soong-cc-config/test/test
+[ 50% 121/241] test android/soong/cc/config
+[ 50% 122/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-android/test/android/soong/android.a
+[ 51% 123/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-android/test/test.a
+[ 51% 124/241] link /home/runner/orangefox/out/soong/.bootstrap/soong-dexpreopt/test/test
+[ 51% 125/241] test android/soong/dexpreopt
+[ 52% 126/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-etc/pkg/android/soong/etc.a
+[ 52% 127/241] link /home/runner/orangefox/out/soong/.bootstrap/soong-etc/test/test
+[ 53% 128/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-genrule/pkg/android/soong/genrule.a
+[ 53% 129/241] test android/soong/etc
+[ 53% 130/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-genrule/test/android/soong/genrule.a
+[ 54% 131/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-icu/pkg/android/soong/icu.a
+[ 54% 132/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-genrule/test/test.a
+[ 55% 133/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-fs_config/pkg/android/soong/fs_config.a
+[ 55% 134/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-java-config/pkg/android/soong/java/config.a
+[ 56% 135/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-phony/pkg/android/soong/phony.a
+[ 56% 136/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-ca-certificates/pkg/android/soong/system/ca-certificates.a
+[ 56% 137/241] link /home/runner/orangefox/out/soong/.bootstrap/soong-android/test/test
+[ 57% 138/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-libchrome/pkg/android/soong/external/libchrome.a
+[ 57% 139/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-tradefed/pkg/android/soong/tradefed.a
+[ 58% 140/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-rust-config/pkg/android/soong/rust/config.a
+[ 58% 141/241] link /home/runner/orangefox/out/soong/.bootstrap/soong-genrule/test/test
+[ 58% 142/241] test android/soong/genrule
+[ 59% 143/241] test android/soong/android
+[ 59% 144/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-python/test/android/soong/python.a
+[ 60% 145/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-python/test/test.a
+[ 60% 146/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-python/pkg/android/soong/python.a
+[ 60% 147/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-twrp-generator/pkg/twrp/soong/generator.a
+[ 61% 148/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-xml/test/android/soong/xml.a
+[ 61% 149/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-xml/test/test.a
+[ 62% 150/241] link /home/runner/orangefox/out/soong/.bootstrap/soong-python/test/test
+[ 62% 151/241] test android/soong/python
+[ 63% 152/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-xml/pkg/android/soong/xml.a
+[ 63% 153/241] compile /home/runner/orangefox/out/soong/.bootstrap/vintf-compatibility-matrix-soong-rules/pkg/android/soong/vintf-compatibility-matrix.a
+[ 63% 154/241] link /home/runner/orangefox/out/soong/.bootstrap/soong-xml/test/test
+[ 64% 155/241] test android/soong/xml
+[ 64% 156/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-cc/pkg/android/soong/cc.a
+[ 65% 157/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-cc/test/android/soong/cc.a
+[ 65% 158/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-cc/test/test.a
+[ 65% 159/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-clang/pkg/android/soong/external/clang.a
+[ 66% 160/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-bpf/pkg/android/soong/bpf.a
+[ 66% 161/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-bpf/test/android/soong/bpf.a
+[ 67% 162/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-bpf/test/test.a
+[ 67% 163/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-clang-prebuilts/pkg/android/soong/prebuilts/clang/host/linux-x86/clangprebuilts.a
+[ 68% 164/241] link /home/runner/orangefox/out/soong/.bootstrap/soong-cc/test/test
+[ 68% 165/241] link /home/runner/orangefox/out/soong/.bootstrap/soong-bpf/test/test
+[ 68% 166/241] test android/soong/bpf
+[ 69% 167/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-kernel/test/android/soong/kernel.a
+[ 69% 168/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-kernel/test/test.a
+[ 70% 169/241] link /home/runner/orangefox/out/soong/.bootstrap/soong-kernel/test/test
+[ 70% 170/241] test android/soong/kernel
+[ 70% 171/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-kernel/pkg/android/soong/kernel.a
+[ 71% 172/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-libaosprecovery_defaults/pkg/bootable/recovery/libaosprecovery.a
+[ 71% 173/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-libguitwrp_defaults/pkg/bootable/recovery/gui.a
+[ 72% 174/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-libminuitwrp_defaults/pkg/bootable/recovery/minuitwrp.a
+[ 72% 175/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-linkerconfig/test/android/soong/linkerconfig.a
+[ 73% 176/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-linkerconfig/test/test.a
+[ 73% 177/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-java/pkg/android/soong/java.a
+[ 73% 178/241] compile /home/runner/orangefox/out/soong/.bootstrap/hidl-soong-rules/pkg/android/soong/hidl.a
+[ 74% 179/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-java/test/android/soong/java.a
+[ 74% 180/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-java/test/test.a
+[ 75% 181/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-linkerconfig/pkg/android/soong/linkerconfig.a
+[ 75% 182/241] link /home/runner/orangefox/out/soong/.bootstrap/soong-linkerconfig/test/test
+[ 75% 183/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-filesystem/test/android/soong/filesystem.a
+[ 76% 184/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-filesystem/test/test.a
+[ 76% 185/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-filesystem/pkg/android/soong/filesystem.a
+[ 77% 186/241] test android/soong/linkerconfig
+[ 77% 187/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-llvm/pkg/android/soong/external/llvm.a
+[ 78% 188/241] link /home/runner/orangefox/out/soong/.bootstrap/soong-java/test/test
+[ 78% 189/241] link /home/runner/orangefox/out/soong/.bootstrap/soong-filesystem/test/test
+[ 78% 190/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-rust/test/android/soong/rust.a
+[ 79% 191/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-rust/test/test.a
+[ 79% 192/241] test android/soong/filesystem
+[ 80% 193/241] link /home/runner/orangefox/out/soong/.bootstrap/soong-rust/test/test
+[ 80% 194/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-rust/pkg/android/soong/rust.a
+[ 80% 195/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-sh/test/android/soong/sh.a
+[ 81% 196/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-sh/test/test.a
+[ 81% 197/241] link /home/runner/orangefox/out/soong/.bootstrap/soong-sh/test/test
+[ 82% 198/241] test android/soong/sh
+[ 82% 199/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-sh/pkg/android/soong/sh.a
+[ 82% 200/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-apex/test/android/soong/apex.a
+[ 83% 201/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-apex/test/test.a
+[ 83% 202/241] link /home/runner/orangefox/out/soong/.bootstrap/soong-apex/test/test
+[ 84% 203/241] test android/soong/rust
+[ 84% 204/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-apex/pkg/android/soong/apex.a
+[ 85% 205/241] compile /home/runner/orangefox/out/soong/.bootstrap/aidl-soong-rules/test/android/soong/aidl.a
+[ 85% 206/241] compile /home/runner/orangefox/out/soong/.bootstrap/aidl-soong-rules/test/test.a
+[ 85% 207/241] link /home/runner/orangefox/out/soong/.bootstrap/aidl-soong-rules/test/test
+[ 86% 208/241] test android/soong/java
+[ 86% 209/241] compile /home/runner/orangefox/out/soong/.bootstrap/aidl-soong-rules/pkg/android/soong/aidl.a
+[ 87% 210/241] compile /home/runner/orangefox/out/soong/.bootstrap/gki-soong-rules/test/android/soong/gki.a
+[ 87% 211/241] compile /home/runner/orangefox/out/soong/.bootstrap/gki-soong-rules/test/test.a
+[ 87% 212/241] link /home/runner/orangefox/out/soong/.bootstrap/gki-soong-rules/test/test
+[ 88% 213/241] test android/soong/gki
+[ 88% 214/241] compile /home/runner/orangefox/out/soong/.bootstrap/gki-soong-rules/pkg/android/soong/gki.a
+[ 89% 215/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-art/pkg/android/soong/art.a
+[ 89% 216/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-bp2build/test/android/soong/bp2build.a
+[ 90% 217/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-bp2build/test/test.a
+[ 90% 218/241] test android/soong/cc
+[ 90% 219/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-bp2build/pkg/android/soong/bp2build.a
+[ 91% 220/241] link /home/runner/orangefox/out/soong/.bootstrap/soong-bp2build/test/test
+[ 91% 221/241] test android/soong/bp2build
+[ 92% 222/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-sdk/test/android/soong/sdk.a
+[ 92% 223/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-sdk/test/test.a
+[ 92% 224/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-sdk/pkg/android/soong/sdk.a
+[ 93% 225/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-suite-harness/pkg/android/soong/tradefed/suite_harness.a
+[ 93% 226/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-sysprop/test/android/soong/sysprop.a
+[ 94% 227/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-sysprop/test/test.a
+[ 94% 228/241] link /home/runner/orangefox/out/soong/.bootstrap/soong-sdk/test/test
+[ 95% 229/241] link /home/runner/orangefox/out/soong/.bootstrap/soong-sysprop/test/test
+[ 95% 230/241] test android/soong/sysprop
+[ 95% 231/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-sysprop/pkg/android/soong/sysprop.a
+[ 96% 232/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-selinux/pkg/android/soong/selinux.a
+[ 96% 233/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong-vold_defaults/pkg/system/vold.a
+[ 97% 234/241] compile /home/runner/orangefox/out/soong/.bootstrap/xsdc-soong-rules/pkg/android/soong/xsdc.a
+[ 97% 235/241] compile /home/runner/orangefox/out/soong/.bootstrap/soong_build/obj/soong_build.a
+[ 97% 236/241] link /home/runner/orangefox/out/soong/.bootstrap/soong_build/obj/a.out
+[ 98% 237/241] cp /home/runner/orangefox/out/soong/.bootstrap/bin/soong_build
+[ 98% 238/241] test android/soong/aidl
+[ 99% 239/241] /home/runner/orangefox/out/soong/.bootstrap/bin/soong_build /home/runner/orangefox/out/soong/build.ninja
+FAILED: /home/runner/orangefox/out/soong/build.ninja
+cd "$(dirname "/home/runner/orangefox/out/soong/.bootstrap/bin/soong_build")" && BUILDER="$PWD/$(basename "/home/runner/orangefox/out/soong/.bootstrap/bin/soong_build")" && cd / && env -i "$BUILDER"     --top "$TOP"     --out "/home/runner/orangefox/out/soong"     -n "/home/runner/orangefox/out"     -d "/home/runner/orangefox/out/soong/build.ninja.d"     -t -l /home/runner/orangefox/out/.module_paths/Android.bp.list -globFile /home/runner/orangefox/out/soong/.bootstrap/build-globs.ninja -o /home/runner/orangefox/out/soong/build.ninja --available_env /home/runner/orangefox/out/soong/soong.environment.available --used_env /home/runner/orangefox/out/soong/soong.environment.used Android.bp
+error: vendor/xiaomi/emerald/Android.bp:5:1: module "soong_namespace": namespace device/xiaomi/emerald does not exist
+[ 99% 240/241] test android/soong/apex
+[100% 241/241] test android/soong/sdk
+ninja: build stopped: subcommand failed.
+17:48:07 soong bootstrap failed with: exit status 1
++ local ret=1
+++ date +%s
++ local end_time=1793728087
++ local tdiff=108
++ local hours=0
++ local mins=1
++ local secs=48
+++ tput colors
++ local ncolors=
++ '[' -n '' ']'
++ color_failed=
++ color_success=
++ color_reset=
++ echo
+
++ '[' 1 -eq 0 ']'
++ echo -n '#### failed to build some targets '
+#### failed to build some targets + '[' 0 -gt 0 ']'
++ '[' 1 -gt 0 ']'
++ printf '(%02g:%02g (mm:ss))' 1 48
+(01:48 (mm:ss))+ echo ' ####'
+ ####
++ echo
+
++ return 1
++ BUILD_STATUS=1
++ echo '=== Build return code: 1 ==='
+=== Build return code: 1 ===
++ '[' 1 -ne 0 ']'
++ echo 'ERROR: Compilation failed.'
+ERROR: Compilation failed.
++ exit 1
