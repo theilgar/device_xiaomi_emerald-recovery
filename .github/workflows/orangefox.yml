@@ -7,21 +7,19 @@ on:
       - fox_12.1
       - main
 
-env:
-  DEVICE: emerald
-  BRAND: xiaomi
-  FOX_BRANCH: fox_12.1
+permissions:
+  contents: write
 
 jobs:
   build:
-    name: Build OrangeFox for ${{ env.DEVICE }}
+    name: Build OrangeFox Recovery
     runs-on: ubuntu-22.04
 
     steps:
       - name: Checkout Device Tree
         uses: actions/checkout@v4
         with:
-          path: device/${{ env.BRAND }}/${{ env.DEVICE }}
+          path: device/xiaomi/emerald
 
       - name: Cleanup Host Disk Space
         run: |
@@ -51,14 +49,14 @@ jobs:
           mkdir -p ~/orangefox
           cd ~/orangefox
           git config --global user.name "theilgar"
-          git config --global user.email "theilgar@users.noreply.github.com"
-          repo init --depth=1 -u https://gitlab.com/OrangeFox/manifest.git -b ${{ env.FOX_BRANCH }}
+          git config --global user.email "129194325+theilgar@users.noreply.github.com"
+          repo init --depth=1 -u https://gitlab.com/OrangeFox/manifest.git -b fox_12.1
           repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags
 
       - name: Link Device Tree
         run: |
-          mkdir -p ~/orangefox/device/${{ env.BRAND }}/${{ env.DEVICE }}
-          cp -r ${GITHUB_WORKSPACE}/device/${{ env.BRAND }}/${{ env.DEVICE }}/* ~/orangefox/device/${{ env.BRAND }}/${{ env.DEVICE }}/
+          mkdir -p ~/orangefox/device/xiaomi/emerald
+          cp -r ${GITHUB_WORKSPACE}/device/xiaomi/emerald/* ~/orangefox/device/xiaomi/emerald/
 
       - name: Compile OrangeFox Recovery
         run: |
@@ -67,22 +65,24 @@ jobs:
           export ALLOW_MISSING_DEPENDENCIES=true
           export FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER=1
           export FOX_VENDOR_BOOT_RECOVERY=1
+          export OF_VENDOR_BOOT_RECOVERY=1
           export LC_ALL="C"
-          lunch omni_${{ env.DEVICE }}-eng
-          mka vendorbootimage -j$(nproc --all)
+          lunch omni_emerald-eng
+          mka vendorbootimage -j$(nproc --all) || mka recoveryimage -j$(nproc --all)
 
       - name: Prepare Artifacts
         run: |
           mkdir -p ${GITHUB_WORKSPACE}/out_artifacts
-          cd ~/orangefox/out/target/product/${{ env.DEVICE }}
+          cd ~/orangefox/out/target/product/emerald
           find . -maxdepth 2 -name "OrangeFox*.zip" -exec cp {} ${GITHUB_WORKSPACE}/out_artifacts/ \; || true
           find . -maxdepth 2 -name "OrangeFox*.img" -exec cp {} ${GITHUB_WORKSPACE}/out_artifacts/ \; || true
           find . -maxdepth 1 -name "vendor_boot.img" -exec cp {} ${GITHUB_WORKSPACE}/out_artifacts/ \; || true
+          find . -maxdepth 1 -name "recovery.img" -exec cp {} ${GITHUB_WORKSPACE}/out_artifacts/ \; || true
           cd ${GITHUB_WORKSPACE}/out_artifacts
           ls -la
 
       - name: Upload Build Artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: OrangeFox-Recovery-${{ env.DEVICE }}
+          name: OrangeFox-Recovery-emerald
           path: out_artifacts/*
