@@ -1,0 +1,34 @@
+#
+# Copyright (C) 2026 The Android Open Source Project
+# Copyright (C) 2026 The OrangeFox Recovery Project
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+# Core Images for Flashing / Backup
+/boot           emmc    /dev/block/by-name/boot             flags=display="Boot";backup=1;flashimg=1;slotselect
+/vendor_boot    emmc    /dev/block/by-name/vendor_boot      flags=display="Vendor Boot";backup=1;flashimg=1;slotselect
+/dtbo           emmc    /dev/block/by-name/dtbo             flags=display="DTBO";backup=1;flashimg=1
+/vbmeta         emmc    /dev/block/by-name/vbmeta           flags=display="VBMeta";backup=1;flashimg=1
+/vbmeta_system  emmc    /dev/block/by-name/vbmeta_system    flags=display="VBMeta System";backup=1;flashimg=1;slotselect
+/vbmeta_vendor  emmc    /dev/block/by-name/vbmeta_vendor    flags=display="VBMeta Vendor";backup=1;flashimg=1;slotselect
+
+# Dynamic Logical Partitions (for manual image flashing / backup)
+/super          emmc    /dev/block/by-name/super            flags=display="Super";backup=1;flashimg=1
+
+# Storage
+/metadata       ext4    /dev/block/by-name/metadata         flags=display="Metadata";backup=1
+/cache          ext4    /dev/block/by-name/rescue           flags=display="Cache";wipeingui
+
+# Radio & Calibrations (IMEI Protection)
+/nvram          emmc    /dev/block/by-name/nvram            flags=display="NVRAM";backup=1
+/nvdata         ext4    /dev/block/by-name/nvdata           flags=display="NVData";backup=1
+/nvcfg          ext4    /dev/block/by-name/nvcfg            flags=display="NVCfg";backup=1
+/persist        ext4    /dev/block/by-name/persist          flags=display="Persist";backup=1
+/protect_f      ext4    /dev/block/by-name/protect1         flags=display="Protect F";backup=1
+/protect_s      ext4    /dev/block/by-name/protect2         flags=display="Protect S";backup=1
+/proinfo        emmc    /dev/block/by-name/proinfo          flags=display="ProInfo";backup=1
+
+# External Storage
+/external_sd    auto    /dev/block/mmcblk1p1    /dev/block/mmcblk1  flags=display="MicroSD Card";storage;wipeingui;removable
+/usb_otg        auto    /dev/block/sda1         /dev/block/sda      flags=display="USB-OTG";storage;wipeingui;removable
