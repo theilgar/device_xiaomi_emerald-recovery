@@ -93,14 +93,14 @@ if [ -n "${VENDOR_DIR}" ]; then
   echo "--> Updating touch firmware from vendor tree..."
   mkdir -p "${DEVICE_DIR}/recovery/root/vendor/firmware"
   mkdir -p "${DEVICE_DIR}/recovery/root/lib/firmware"
-  mkdir -p "${DEVICE_DIR}/recovery/root/etc/firmware"
+  mkdir -p "${DEVICE_DIR}/recovery/root/system/etc/firmware"
 
   FW_SRC="${VENDOR_DIR}/proprietary/vendor/firmware"
   for fw in gt9916_ts_fw_visionox.bin goodix_cfg_group.bin focaltech_ts_fw_huaxing.bin focaltech_mp_fw_huaxin.ini; do
     if [ -f "${FW_SRC}/${fw}" ]; then
       cp -f "${FW_SRC}/${fw}" "${DEVICE_DIR}/recovery/root/vendor/firmware/"
       cp -f "${FW_SRC}/${fw}" "${DEVICE_DIR}/recovery/root/lib/firmware/"
-      cp -f "${FW_SRC}/${fw}" "${DEVICE_DIR}/recovery/root/etc/firmware/"
+      cp -f "${FW_SRC}/${fw}" "${DEVICE_DIR}/recovery/root/system/etc/firmware/"
     fi
   done
 fi
