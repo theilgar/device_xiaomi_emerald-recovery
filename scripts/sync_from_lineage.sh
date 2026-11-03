@@ -69,19 +69,16 @@ fi
 if [ -n "${KERNEL_DIR}" ]; then
   echo "--> Updating kernel modules from kernel tree..."
   mkdir -p "${DEVICE_DIR}/recovery/root/lib/modules"
-  mkdir -p "${DEVICE_DIR}/recovery/root/vendor/lib/modules"
 
   # Copy all vendor ramdisk kernel modules (display, ufs, keys, vibrator, battery, regulators, etc.)
   if [ -d "${KERNEL_DIR}/modules_ramdisk" ]; then
     cp -f "${KERNEL_DIR}/modules_ramdisk/"*.ko "${DEVICE_DIR}/recovery/root/lib/modules/"
-    cp -f "${KERNEL_DIR}/modules_ramdisk/"*.ko "${DEVICE_DIR}/recovery/root/vendor/lib/modules/"
   fi
 
   # Core touch modules from modules_dlkm
   for mod in xiaomi.ko switch_class.ko gt9916.ko ft3683g.ko touch_boost.ko mtk_ioctl_touch_boost.ko; do
     if [ -f "${KERNEL_DIR}/modules_dlkm/${mod}" ]; then
       cp -f "${KERNEL_DIR}/modules_dlkm/${mod}" "${DEVICE_DIR}/recovery/root/lib/modules/"
-      cp -f "${KERNEL_DIR}/modules_dlkm/${mod}" "${DEVICE_DIR}/recovery/root/vendor/lib/modules/"
     fi
   done
 fi
@@ -89,14 +86,12 @@ fi
 # 3. Sync Touch Firmware from vendor tree
 if [ -n "${VENDOR_DIR}" ]; then
   echo "--> Updating touch firmware from vendor tree..."
-  mkdir -p "${DEVICE_DIR}/recovery/root/vendor/firmware"
   mkdir -p "${DEVICE_DIR}/recovery/root/lib/firmware"
   mkdir -p "${DEVICE_DIR}/recovery/root/system/etc/firmware"
 
   FW_SRC="${VENDOR_DIR}/proprietary/vendor/firmware"
   for fw in gt9916_ts_fw_visionox.bin goodix_cfg_group.bin focaltech_ts_fw_huaxing.bin focaltech_mp_fw_huaxin.ini; do
     if [ -f "${FW_SRC}/${fw}" ]; then
-      cp -f "${FW_SRC}/${fw}" "${DEVICE_DIR}/recovery/root/vendor/firmware/"
       cp -f "${FW_SRC}/${fw}" "${DEVICE_DIR}/recovery/root/lib/firmware/"
       cp -f "${FW_SRC}/${fw}" "${DEVICE_DIR}/recovery/root/system/etc/firmware/"
     fi
