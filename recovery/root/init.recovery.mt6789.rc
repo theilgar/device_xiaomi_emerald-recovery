@@ -97,7 +97,6 @@ on fs
 on post-fs
     symlink /dev/block/platform/soc/11270000.ufshci/by-name /dev/block/by-name
     symlink /dev/block/bootdevice/by-name /dev/block/by-name
-    start boot-hal-1-2
 
 # Touchscreen, Backlight, Vibrator & Flashlight permissions
 on boot
