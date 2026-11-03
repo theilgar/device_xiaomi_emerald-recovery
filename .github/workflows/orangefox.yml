@@ -63,7 +63,9 @@ jobs:
           ls -la ~/orangefox/device/xiaomi/emerald/
 
       - name: Compile OrangeFox Recovery
+        shell: bash --noprofile --norc {0}
         run: |
+          set +e
           exec > >(tee -a /tmp/build.log) 2>&1
           set -x
           cd ~/orangefox
@@ -91,6 +93,12 @@ jobs:
 
           echo "=== STARTING COMPILATION ==="
           mka adbd recoveryimage -j$(nproc --all)
+          BUILD_STATUS=$?
+          echo "=== Build return code: ${BUILD_STATUS} ==="
+          if [ ${BUILD_STATUS} -ne 0 ]; then
+            echo "ERROR: Compilation failed."
+            exit ${BUILD_STATUS}
+          fi
 
       - name: Prepare Artifacts
         run: |
