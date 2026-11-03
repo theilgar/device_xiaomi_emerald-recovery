@@ -75,7 +75,7 @@ TW_HAS_MTP := true
 TW_DEFAULT_EXTERNAL_STORAGE := true
 
 # OrangeFox Advanced Configuration
-FOX_VERSION := "R12.1"
+FOX_MAINTAINER_PATCH_VERSION := "1"
 OF_MAINTAINER := "theilgar"
 FOX_BUILD_DEVICE := "emerald"
 FOX_TARGET_DEVICES := "emerald,emerald_global,23117RA68G,2312FPCA6G,2502FRA65G"
