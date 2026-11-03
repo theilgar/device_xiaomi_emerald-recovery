@@ -74,15 +74,12 @@ jobs:
           cd ~/fox_sync
           ./orangefox_sync.sh --branch 12.1 --path ~/orangefox
 
-      - name: Link Device, Kernel and Vendor Trees
+      - name: Link Device Tree
         run: |
-          mkdir -p ~/orangefox/device/xiaomi ~/orangefox/vendor/xiaomi
-          rm -rf ~/orangefox/device/xiaomi/emerald ~/orangefox/device/xiaomi/emerald-kernel ~/orangefox/vendor/xiaomi/emerald
+          mkdir -p ~/orangefox/device/xiaomi
+          rm -rf ~/orangefox/device/xiaomi/emerald
           cp -a ${GITHUB_WORKSPACE}/device/xiaomi/emerald ~/orangefox/device/xiaomi/
-          cp -a ${GITHUB_WORKSPACE}/device/xiaomi/emerald-kernel ~/orangefox/device/xiaomi/
-          cp -a ${GITHUB_WORKSPACE}/vendor/xiaomi/emerald ~/orangefox/vendor/xiaomi/
           ls -la ~/orangefox/device/xiaomi/emerald/
-          ls -la ~/orangefox/device/xiaomi/emerald-kernel/
 
       - name: Update mkbootimg for Boot Header v4
         run: |
