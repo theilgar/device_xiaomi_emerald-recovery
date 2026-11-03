@@ -56,30 +56,40 @@ jobs:
 
       - name: Link Device Tree
         run: |
-          mkdir -p ~/orangefox/device/xiaomi/emerald
-          cp -r ${GITHUB_WORKSPACE}/device/xiaomi/emerald/* ~/orangefox/device/xiaomi/emerald/
+          mkdir -p ~/orangefox/device/xiaomi
+          rm -rf ~/orangefox/device/xiaomi/emerald
+          cp -a ${GITHUB_WORKSPACE}/device/xiaomi/emerald ~/orangefox/device/xiaomi/
           ls -la ~/orangefox/device/xiaomi/emerald/
 
       - name: Compile OrangeFox Recovery
         run: |
+          exec > >(tee -a /tmp/build.log) 2>&1
+          set -x
           cd ~/orangefox
-          set +e
-          source build/envsetup.sh
-          echo "=== Running lunch for emerald ==="
-          lunch twrp_emerald-eng || lunch omni_emerald-eng || lunch twrp_emerald-userdebug
-          LUNCH_STATUS=$?
-          echo "=== Lunch return code: ${LUNCH_STATUS} ==="
-          if [ ${LUNCH_STATUS} -ne 0 ]; then
-            echo "ERROR: Lunch command failed to configure product."
-            exit 1
-          fi
-          set -e
           export ALLOW_MISSING_DEPENDENCIES=true
+          export FOX_BUILD_TYPE="Alpha"
+          export FOX_BUILD_DEVICE="emerald"
           export FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER=1
           export FOX_VENDOR_BOOT_RECOVERY=1
           export OF_VENDOR_BOOT_RECOVERY=1
           export LC_ALL="C"
-          mka adbd recoveryimage -j$(nproc --all) 2>&1 | tee /tmp/build.log
+          source build/envsetup.sh
+
+          echo "=== DUMPING PRODUCTS LIST ==="
+          build/soong/soong_ui.bash --dumpvar-mode COMMON_LUNCH_CHOICES || true
+
+          echo "=== RUNNING LUNCH ==="
+          lunch twrp_emerald-eng || lunch omni_emerald-eng || lunch twrp_emerald-userdebug
+          LUNCH_STATUS=$?
+          echo "=== Lunch result code: ${LUNCH_STATUS} ==="
+          if [ ${LUNCH_STATUS} -ne 0 ]; then
+            echo "ERROR: Lunch command failed to configure product."
+            cat out/error.log 2>/dev/null || true
+            exit 1
+          fi
+
+          echo "=== STARTING COMPILATION ==="
+          mka adbd recoveryimage -j$(nproc --all)
 
       - name: Prepare Artifacts
         run: |
@@ -101,10 +111,11 @@ jobs:
       - name: Debug Output on Failure
         if: failure()
         run: |
-          echo "=== TAIL OF BUILD LOG (LAST 250 LINES) ==="
-          tail -n 250 /tmp/build.log || true
-          echo "=== FILES IN OUT DIRECTORY ==="
-          find ~/orangefox/out -maxdepth 3 -ls || true
+          echo "=== COMPLETE STEP LOG OUTPUT ==="
+          cat /tmp/build.log || true
+          echo "=== SOONG LOG IF EXISTS ==="
+          cat ~/orangefox/out/error.log 2>/dev/null || true
+          tail -n 100 ~/orangefox/out/soong.log 2>/dev/null || true
 
       - name: Upload Build Log on Failure
         if: failure()
