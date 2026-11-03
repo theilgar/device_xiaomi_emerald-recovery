@@ -34,7 +34,7 @@ jobs:
           sudo apt-get install -y \
             bc bison build-essential ccache curl flex g++-multilib gcc-multilib git gnupg \
             gperf imagemagick lib32readline-dev lib32z1-dev libelf-dev liblz4-tool libncurses5 \
-            libncurses5-dev libsdl1.2-dev libssl-dev libxml2 libxml2-utils lzop pngcrush rsync \
+            libncurses5-dev libsdl1.2-dev libssl-dev libxml2 libxml2-utils lzop patch pngcrush rsync \
             schedtool squashfs-tools xsltproc zip zlib1g-dev python3 python-is-python3 openjdk-11-jdk
 
       - name: Install Repo Tool
@@ -43,15 +43,16 @@ jobs:
           curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
           chmod a+x ~/bin/repo
           sudo ln -sf ~/bin/repo /usr/bin/repo
+          sudo ln -sf ~/bin/repo /usr/local/bin/repo
 
-      - name: Initialize OrangeFox Manifest
+      - name: Initialize and Sync OrangeFox Sources
         run: |
-          mkdir -p ~/orangefox
-          cd ~/orangefox
           git config --global user.name "theilgar"
           git config --global user.email "129194325+theilgar@users.noreply.github.com"
-          repo init --depth=1 -u https://gitlab.com/OrangeFox/manifest.git -b fox_12.1
-          repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags
+          git config --global --add safe.directory "*"
+          git clone https://gitlab.com/OrangeFox/sync.git ~/fox_sync
+          cd ~/fox_sync
+          ./orangefox_sync.sh --branch 12.1 --path ~/orangefox
 
       - name: Link Device Tree
         run: |
@@ -67,7 +68,7 @@ jobs:
           export FOX_VENDOR_BOOT_RECOVERY=1
           export OF_VENDOR_BOOT_RECOVERY=1
           export LC_ALL="C"
-          lunch omni_emerald-eng
+          lunch twrp_emerald-eng || lunch omni_emerald-eng
           mka vendorbootimage -j$(nproc --all) || mka recoveryimage -j$(nproc --all)
 
       - name: Prepare Artifacts
