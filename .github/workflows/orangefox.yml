@@ -108,6 +108,22 @@ jobs:
           find . -maxdepth 1 -name "vendor_boot.img" -exec cp {} ${GITHUB_WORKSPACE}/out_artifacts/ \; || true
           find . -maxdepth 1 -name "recovery.img" -exec cp {} ${GITHUB_WORKSPACE}/out_artifacts/ \; || true
           cd ${GITHUB_WORKSPACE}/out_artifacts
+          # Duplicate recovery.img as vendor_boot.img and vice versa so users can find both
+          if [ -f "recovery.img" ] && [ ! -f "vendor_boot.img" ]; then
+            cp recovery.img vendor_boot.img
+          elif [ -f "vendor_boot.img" ] && [ ! -f "recovery.img" ]; then
+            cp vendor_boot.img recovery.img
+          fi
+          for z in OrangeFox*.zip; do
+            if [ -f "$z" ] && [ ! -f "vendor_boot.img" ]; then
+              unzip -p "$z" recovery.img > vendor_boot.img 2>/dev/null || true
+              if [ -s vendor_boot.img ]; then
+                cp vendor_boot.img recovery.img
+              else
+                rm -f vendor_boot.img
+              fi
+            fi
+          done
           ls -la
 
       - name: Upload Build Artifacts
