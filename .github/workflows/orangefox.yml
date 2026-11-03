@@ -58,17 +58,27 @@ jobs:
         run: |
           mkdir -p ~/orangefox/device/xiaomi/emerald
           cp -r ${GITHUB_WORKSPACE}/device/xiaomi/emerald/* ~/orangefox/device/xiaomi/emerald/
+          ls -la ~/orangefox/device/xiaomi/emerald/
 
       - name: Compile OrangeFox Recovery
         run: |
           cd ~/orangefox
+          set +e
           source build/envsetup.sh
+          echo "=== Running lunch for emerald ==="
+          lunch twrp_emerald-eng || lunch omni_emerald-eng || lunch twrp_emerald-userdebug
+          LUNCH_STATUS=$?
+          echo "=== Lunch return code: ${LUNCH_STATUS} ==="
+          if [ ${LUNCH_STATUS} -ne 0 ]; then
+            echo "ERROR: Lunch command failed to configure product."
+            exit 1
+          fi
+          set -e
           export ALLOW_MISSING_DEPENDENCIES=true
           export FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER=1
           export FOX_VENDOR_BOOT_RECOVERY=1
           export OF_VENDOR_BOOT_RECOVERY=1
           export LC_ALL="C"
-          lunch twrp_emerald-eng || lunch omni_emerald-eng
           mka vendorbootimage -j$(nproc --all) || mka recoveryimage -j$(nproc --all)
 
       - name: Prepare Artifacts
@@ -87,3 +97,13 @@ jobs:
         with:
           name: OrangeFox-Recovery-emerald
           path: out_artifacts/*
+
+      - name: Debug Output on Failure
+        if: failure()
+        run: |
+          echo "=== Files in device tree ==="
+          ls -la ~/orangefox/device/xiaomi/emerald || true
+          echo "=== Out directory contents ==="
+          ls -la ~/orangefox/out/target/product/emerald || true
+          echo "=== Tail of build log files ==="
+          find ~/orangefox/out -name "*.log" -exec tail -n 100 {} + || true
