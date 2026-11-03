@@ -16,6 +16,7 @@ for cand in \
   "${DEVICE_DIR}/../emerald-kernel" \
   "${DEVICE_DIR}/../device_xiaomi_emerald-kernel" \
   "${DEVICE_DIR}/../../device/xiaomi/emerald-kernel" \
+  "/home/user/Desktop/lineage/device/xiaomi/emerald-kernel" \
   "${GITHUB_WORKSPACE:-/home/admin}/device/xiaomi/emerald-kernel" \
   "/home/admin/device_xiaomi_emerald-kernel"; do
   if [ -d "${cand}" ] && [ -f "${cand}/dtb/mt6789.dtb" ]; then
@@ -28,6 +29,7 @@ VENDOR_DIR=""
 for cand in \
   "${DEVICE_DIR}/../vendor_xiaomi_emerald" \
   "${DEVICE_DIR}/../../vendor/xiaomi/emerald" \
+  "/home/user/Desktop/lineage/vendor/xiaomi/emerald" \
   "${GITHUB_WORKSPACE:-/home/admin}/vendor/xiaomi/emerald" \
   "/home/admin/vendor_xiaomi_emerald"; do
   if [ -d "${cand}/proprietary/vendor/firmware" ]; then
