@@ -20,6 +20,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           path: device/xiaomi/emerald
+          fetch-depth: 0
 
       - name: Cleanup Host Disk Space
         run: |
@@ -108,18 +109,14 @@ jobs:
           name: OrangeFox-Recovery-emerald
           path: out_artifacts/*
 
-      - name: Debug Output on Failure
+      - name: Push failure log to git
         if: failure()
         run: |
-          echo "=== COMPLETE STEP LOG OUTPUT ==="
-          cat /tmp/build.log || true
-          echo "=== SOONG LOG IF EXISTS ==="
-          cat ~/orangefox/out/error.log 2>/dev/null || true
-          tail -n 100 ~/orangefox/out/soong.log 2>/dev/null || true
-
-      - name: Upload Build Log on Failure
-        if: failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: build-failure-log
-          path: /tmp/build.log
+          cd ${GITHUB_WORKSPACE}/device/xiaomi/emerald
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout -B build-log
+          cp /tmp/build.log ./build_error.log
+          git add build_error.log
+          git commit -m "ci: Dump build error log [skip ci]" || true
+          git push -f origin build-log || true
