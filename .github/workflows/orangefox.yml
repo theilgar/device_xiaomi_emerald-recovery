@@ -140,20 +140,23 @@ jobs:
           find . -maxdepth 2 -name "OrangeFox*.img" -exec cp {} ${GITHUB_WORKSPACE}/out_artifacts/ \; || true
           find . -maxdepth 2 -name "vendor_boot.img" -exec cp {} ${GITHUB_WORKSPACE}/out_artifacts/vendor_boot.img \; || true
 
-          # Find compiled recovery ramdisk for hybrid repacking
-          RECOVERY_RAMDISK=$(find ~/orangefox/out/target/product/emerald -type f \( -name "*recovery*.cpio*" -o -name "ramdisk-recovery*" -o -name "*vendor_ramdisk*.cpio*" \) 2>/dev/null | head -n 1)
+          # Find compiled recovery ramdisk for hybrid repacking (must be real ramdisk > 1MB)
+          RECOVERY_RAMDISK=$(find ~/orangefox/out/target/product/emerald -type f -size +1M \( -name "*recovery*.cpio*" -o -name "recovery.cpio*" \) 2>/dev/null | head -n 1)
           echo "Using recovery ramdisk: ${RECOVERY_RAMDISK}"
 
           if [ -n "${RECOVERY_RAMDISK}" ] && [ -f "${RECOVERY_RAMDISK}" ]; then
-            mkdir -p /tmp/rec_repack
-            if [[ "${RECOVERY_RAMDISK}" == *.gz ]]; then
-              gzip -dc "${RECOVERY_RAMDISK}" > /tmp/rec_repack/recovery.cpio
-            elif [[ "${RECOVERY_RAMDISK}" == *.lz4 ]]; then
-              lz4 -dc "${RECOVERY_RAMDISK}" > /tmp/rec_repack/recovery.cpio
+            if [[ "${RECOVERY_RAMDISK}" == *.lz4 ]]; then
+              REC_FRAG="${RECOVERY_RAMDISK}"
             else
-              cp "${RECOVERY_RAMDISK}" /tmp/rec_repack/recovery.cpio
+              mkdir -p /tmp/rec_repack
+              if [[ "${RECOVERY_RAMDISK}" == *.gz ]]; then
+                gzip -dc "${RECOVERY_RAMDISK}" > /tmp/rec_repack/recovery.cpio
+              else
+                cp "${RECOVERY_RAMDISK}" /tmp/rec_repack/recovery.cpio
+              fi
+              lz4 -9 -l -f /tmp/rec_repack/recovery.cpio /tmp/rec_repack/recovery_fragment.cpio.lz4
+              REC_FRAG="/tmp/rec_repack/recovery_fragment.cpio.lz4"
             fi
-            lz4 -9 -l /tmp/rec_repack/recovery.cpio ${GITHUB_WORKSPACE}/recovery_fragment.cpio.lz4
 
             # Assemble complete hybrid vendor_boot.img (Platform Ramdisk + OrangeFox Recovery + MT6789 DTB + Bootconfig)
             python3 ${GITHUB_WORKSPACE}/device/xiaomi/emerald/prebuilt/mkbootimg.py \
@@ -173,7 +176,7 @@ jobs:
               --vendor_ramdisk_fragment ${GITHUB_WORKSPACE}/device/xiaomi/emerald/prebuilt/platform_ramdisk.cpio.lz4 \
               --ramdisk_type 2 \
               --ramdisk_name recovery \
-              --vendor_ramdisk_fragment ${GITHUB_WORKSPACE}/recovery_fragment.cpio.lz4 \
+              --vendor_ramdisk_fragment "${REC_FRAG}" \
               --vendor_boot ${GITHUB_WORKSPACE}/out_artifacts/vendor_boot_hybrid.img || true
           fi
 
