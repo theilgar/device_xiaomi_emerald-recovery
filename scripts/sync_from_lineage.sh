@@ -75,8 +75,8 @@ if [ -n "${KERNEL_DIR}" ]; then
     cp -f "${KERNEL_DIR}/modules_ramdisk/"*.ko "${DEVICE_DIR}/recovery/root/lib/modules/"
   fi
 
-  # Core touch modules from modules_dlkm
-  for mod in xiaomi.ko switch_class.ko gt9916.ko ft3683g.ko touch_boost.ko mtk_ioctl_touch_boost.ko; do
+  # Core touch and flashlight modules from modules_dlkm
+  for mod in xiaomi.ko switch_class.ko gt9916.ko ft3683g.ko touch_boost.ko mtk_ioctl_touch_boost.ko flashlight.ko lm3643.ko flashlights-mt6789.ko; do
     if [ -f "${KERNEL_DIR}/modules_dlkm/${mod}" ]; then
       cp -f "${KERNEL_DIR}/modules_dlkm/${mod}" "${DEVICE_DIR}/recovery/root/lib/modules/"
     fi

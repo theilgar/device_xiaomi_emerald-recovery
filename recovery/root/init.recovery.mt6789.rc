@@ -73,6 +73,11 @@ on early-init
     insmod /lib/modules/subpmic_charger.ko
     insmod /lib/modules/main_chg.ko
 
+    # 8. Flashlight Drivers (LM3643 & MT6789 Flashlight)
+    insmod /lib/modules/flashlight.ko
+    insmod /lib/modules/lm3643.ko
+    insmod /lib/modules/flashlights-mt6789.ko
+
 on init
     setprop sys.usb.configfs 1
     setprop sys.usb.ffs.aio_compat 0
@@ -106,13 +111,23 @@ on boot
 
     # Vibrator trigger & sysfs permissions
     chown system system /sys/class/leds/vibrator/trigger
+    chown system system /sys/class/leds/awinic_vibrator/trigger
     write /sys/class/leds/vibrator/trigger "transient"
+    write /sys/class/leds/awinic_vibrator/trigger "transient"
     chown system system /sys/class/leds/vibrator/activate
     chown system system /sys/class/leds/vibrator/brightness
     chown system system /sys/class/leds/vibrator/duration
     chown system system /sys/class/leds/vibrator/state
     chmod 0666 /sys/class/leds/vibrator/activate
     chmod 0666 /sys/class/leds/vibrator/duration
+    chown system system /sys/class/leds/awinic_vibrator/brightness
+    chmod 0666 /sys/class/leds/awinic_vibrator/brightness
+    chown system system /sys/class/leds/awinic_vibrator/vibrator/activate
+    chown system system /sys/class/leds/awinic_vibrator/vibrator/duration
+    chown system system /sys/class/leds/awinic_vibrator/vibrator/state
+    chmod 0666 /sys/class/leds/awinic_vibrator/vibrator/activate
+    chmod 0666 /sys/class/leds/awinic_vibrator/vibrator/duration
+    chmod 0666 /sys/class/leds/awinic_vibrator/vibrator/state
 
     # Flashlight permissions
     chmod 0666 /sys/devices/platform/flashlights_mt6789/mt6789_flash
@@ -139,3 +154,6 @@ on boot
     insmod /lib/modules/xiaomi.ko
     insmod /lib/modules/gt9916.ko
     insmod /lib/modules/ft3683g.ko
+    insmod /lib/modules/flashlight.ko
+    insmod /lib/modules/lm3643.ko
+    insmod /lib/modules/flashlights-mt6789.ko
