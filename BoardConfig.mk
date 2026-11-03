@@ -37,7 +37,15 @@ TW_LOAD_VENDOR_BOOT_MODULES := true
 AB_OTA_UPDATER := true
 FOX_VIRTUAL_AB_DEVICE := 1
 FOX_VENDOR_BOOT_RECOVERY := 1
-TARGET_PREBUILT_DTB := $(DEVICE_PATH)/prebuilt/dtb.img
+
+# LineageOS 24.0 Prebuilt Kernel & DTB linkage
+KERNEL_PATH := device/xiaomi/emerald-kernel
+ifneq ($(wildcard $(KERNEL_PATH)/dtb/mt6789.dtb),)
+    TARGET_PREBUILT_DTB := $(KERNEL_PATH)/dtb/mt6789.dtb
+else
+    TARGET_PREBUILT_DTB := $(DEVICE_PATH)/prebuilt/dtb.img
+endif
+
 BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
 BOARD_VENDOR_CMDLINE := bootopt=64S3,32N2,64N2 androidboot.selinux=permissive
 BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
