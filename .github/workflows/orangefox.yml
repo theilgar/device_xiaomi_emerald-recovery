@@ -74,7 +74,6 @@ jobs:
           export FOX_BUILD_DEVICE="emerald"
           export FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER=1
           export FOX_VENDOR_BOOT_RECOVERY=1
-          export OF_VENDOR_BOOT_RECOVERY=1
           export LC_ALL="C"
           source build/envsetup.sh
 
