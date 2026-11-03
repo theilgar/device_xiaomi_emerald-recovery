@@ -10,7 +10,22 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 DEVICE_DIR="$(cd "${SCRIPT_DIR}/.." && pwd)"
 
-# Search paths for emerald-kernel and vendor_xiaomi_emerald
+# Search paths for emerald-kernel, vendor_xiaomi_emerald and device_xiaomi_emerald
+LINEAGE_DEV_DIR=""
+for cand in \
+  "${DEVICE_DIR}/../emerald-lineage" \
+  "${DEVICE_DIR}/../device_xiaomi_emerald" \
+  "${DEVICE_DIR}/../emerald" \
+  "${DEVICE_DIR}/../../device/xiaomi/emerald" \
+  "/home/user/Desktop/lineage/device/xiaomi/emerald" \
+  "${GITHUB_WORKSPACE:-/home/admin}/device/xiaomi/emerald-lineage" \
+  "/home/admin/device_xiaomi_emerald"; do
+  if [ -d "${cand}" ] && [ -f "${cand}/BoardConfig.mk" ]; then
+    LINEAGE_DEV_DIR="$(cd "${cand}" && pwd)"
+    break
+  fi
+done
+
 KERNEL_DIR=""
 for cand in \
   "${DEVICE_DIR}/../emerald-kernel" \
@@ -39,9 +54,10 @@ for cand in \
 done
 
 echo "=== Syncing LineageOS 24.0 Prebuilts ==="
-echo "Device Tree: ${DEVICE_DIR}"
-echo "Kernel Tree: ${KERNEL_DIR:-NOT FOUND}"
-echo "Vendor Tree: ${VENDOR_DIR:-NOT FOUND}"
+echo "Recovery Tree: ${DEVICE_DIR}"
+echo "Lineage Tree:  ${LINEAGE_DEV_DIR:-NOT FOUND}"
+echo "Kernel Tree:   ${KERNEL_DIR:-NOT FOUND}"
+echo "Vendor Tree:   ${VENDOR_DIR:-NOT FOUND}"
 
 # 1. Sync DTB
 if [ -n "${KERNEL_DIR}" ] && [ -f "${KERNEL_DIR}/dtb/mt6789.dtb" ]; then
@@ -87,6 +103,18 @@ if [ -n "${VENDOR_DIR}" ]; then
       cp -f "${FW_SRC}/${fw}" "${DEVICE_DIR}/recovery/root/etc/firmware/"
     fi
   done
+fi
+
+# 4. Sync Recovery Configurations from LineageOS device tree
+if [ -n "${LINEAGE_DEV_DIR}" ]; then
+  echo "--> Updating configurations from LineageOS device tree..."
+  if [ -f "${LINEAGE_DEV_DIR}/rootdir/etc/init.recovery.usb.rc" ]; then
+    cp -f "${LINEAGE_DEV_DIR}/rootdir/etc/init.recovery.usb.rc" "${DEVICE_DIR}/recovery/root/init.recovery.usb.rc"
+  fi
+  if [ -f "${LINEAGE_DEV_DIR}/rootdir/etc/fstab.mt6789" ]; then
+    mkdir -p "${DEVICE_DIR}/prebuilt"
+    cp -f "${LINEAGE_DEV_DIR}/rootdir/etc/fstab.mt6789" "${DEVICE_DIR}/prebuilt/fstab.mt6789"
+  fi
 fi
 
 echo "=== Synchronization complete! ==="

@@ -39,6 +39,13 @@ jobs:
           ref: lineage-24.0
           path: vendor/xiaomi/emerald
 
+      - name: Checkout LineageOS Device Tree (LineageOS 24.0)
+        uses: actions/checkout@v4
+        with:
+          repository: theilgar/device_xiaomi_emerald
+          ref: lineage-24.0
+          path: device/xiaomi/emerald-lineage
+
       - name: Synchronize Prebuilts from LineageOS Trees
         run: |
           chmod +x ${GITHUB_WORKSPACE}/device/xiaomi/emerald/scripts/sync_from_lineage.sh
