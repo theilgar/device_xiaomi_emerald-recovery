@@ -110,16 +110,16 @@ OF_CLOCK_POS := 1
 OF_ALLOW_DISABLE_NAVBAR := 0
 
 # Display Backlight
-TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
+TW_BRIGHTNESS_PATH := /sys/class/leds/lcd-backlight/brightness
 TW_MAX_BRIGHTNESS := 2047
 TW_DEFAULT_BRIGHTNESS := 1024
 
 # Flashlight
-OF_FL_PATH1 := "/sys/class/leds/flashlight"
+OF_FL_PATH1 := /sys/class/leds/flashlight
 
 # Dynamic Partitions & Backup List
 OF_DYNAMIC_FULL_SIZE := 7515144192
-OF_QUICK_BACKUP_LIST := "/boot;/data;/super;"
+OF_QUICK_BACKUP_LIST := /boot;/data;/super;
 OF_PATCH_AVB20 := 1
 OF_USE_MAGISKBOOT := 1
 OF_USE_NEW_MAGISKBOOT := 1
