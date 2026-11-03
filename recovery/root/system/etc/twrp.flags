@@ -25,6 +25,7 @@
 /nvdata         ext4    /dev/block/by-name/nvdata           flags=display="NVData";backup=1
 /nvcfg          ext4    /dev/block/by-name/nvcfg            flags=display="NVCfg";backup=1
 /persist        ext4    /dev/block/by-name/persist          flags=display="Persist";backup=1
+/persistbak     ext4    /dev/block/by-name/persistbak       flags=display="Persist Backup";backup=1;subpartitionof=/persist
 /protect_f      ext4    /dev/block/by-name/protect1         flags=display="Protect F";backup=1
 /protect_s      ext4    /dev/block/by-name/protect2         flags=display="Protect S";backup=1
 /proinfo        emmc    /dev/block/by-name/proinfo          flags=display="ProInfo";backup=1

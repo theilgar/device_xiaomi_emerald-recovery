@@ -14,15 +14,24 @@ on init
 on fs
     wait /dev/block/platform/soc/11270000.ufshci
     symlink /dev/block/platform/soc/11270000.ufshci /dev/block/bootdevice
+    mkdir /vendor 0755 root root
+    mkdir /vendor/lib 0755 root root
+    symlink /lib/modules /vendor/lib/modules
 
 on post-fs
     start boot-hal-1-2
 
 # Touchscreen driver modules (verified against stock init.insmod.touch.cfg)
 on boot
+    insmod /lib/modules/tui-common.ko
     insmod /vendor/lib/modules/tui-common.ko
+    insmod /lib/modules/ts_scp_common.ko
     insmod /vendor/lib/modules/ts_scp_common.ko
+    insmod /lib/modules/gt9916.ko
     insmod /vendor/lib/modules/gt9916.ko
+    insmod /lib/modules/ft3683g.ko
     insmod /vendor/lib/modules/ft3683g.ko
+    insmod /lib/modules/fts_touch_spi.ko
     insmod /vendor/lib/modules/fts_touch_spi.ko
+    insmod /lib/modules/focaltech_touch.ko
     insmod /vendor/lib/modules/focaltech_touch.ko
