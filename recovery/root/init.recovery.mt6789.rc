@@ -67,16 +67,24 @@ on init
     setprop sys.usb.ffs.aio_compat 0
     setprop sys.usb.controller "musb-hdrc"
     setprop vendor.usb.controller "musb-hdrc"
+    symlink /system/etc/recovery.fstab /etc/recovery.fstab
+    symlink /system/etc/fox.cfg /etc/fox.cfg
+    symlink /system/etc/twrp.flags /etc/twrp.flags
+    symlink /system/etc/cgroups.json /etc/cgroups.json
 
 on fs
     wait /dev/block/platform/soc/11270000.ufshci 10
     symlink /dev/block/platform/soc/11270000.ufshci /dev/block/bootdevice
+    symlink /dev/block/platform/soc/11270000.ufshci/by-name /dev/block/by-name
+    symlink /dev/block/bootdevice/by-name /dev/block/by-name
     mkdir /vendor 0755 root root
     mkdir /vendor/lib 0755 root root
     symlink /lib/modules /vendor/lib/modules
     mkdir /vendor/firmware 0755 root root
 
 on post-fs
+    symlink /dev/block/platform/soc/11270000.ufshci/by-name /dev/block/by-name
+    symlink /dev/block/bootdevice/by-name /dev/block/by-name
     start boot-hal-1-2
 
 # Touchscreen permissions & fallback module loader
