@@ -115,6 +115,17 @@ jobs:
           RECOVERY_RAMDISK=$(find ~/orangefox/out/target/product/emerald -name "recovery.cpio*" | head -n 1)
           echo "Using recovery ramdisk: ${RECOVERY_RAMDISK}"
 
+          # Ensure recovery ramdisk fragment is compressed with legacy LZ4 (magic 0x184c2102) required by MediaTek MT6789 GKI kernel
+          mkdir -p /tmp/rec_repack
+          if [[ "${RECOVERY_RAMDISK}" == *.gz ]]; then
+            gzip -dc "${RECOVERY_RAMDISK}" > /tmp/rec_repack/recovery.cpio
+          elif [[ "${RECOVERY_RAMDISK}" == *.lz4 ]]; then
+            lz4 -dc "${RECOVERY_RAMDISK}" > /tmp/rec_repack/recovery.cpio
+          else
+            cp "${RECOVERY_RAMDISK}" /tmp/rec_repack/recovery.cpio
+          fi
+          lz4 -9 -l /tmp/rec_repack/recovery.cpio ${GITHUB_WORKSPACE}/recovery_fragment.cpio.lz4
+
           # Assemble complete hybrid vendor_boot.img (Platform Ramdisk + OrangeFox Recovery + MT6789 DTB + Bootconfig)
           python3 ${GITHUB_WORKSPACE}/device/xiaomi/emerald/prebuilt/mkbootimg.py \
             --header_version 4 \
@@ -124,7 +135,7 @@ jobs:
             --ramdisk_offset 0x66f00000 \
             --tags_offset 0x47c80000 \
             --dtb_offset 0x0000000047c80000 \
-            --vendor_cmdline 'bootopt=64S3,32N2,64N2 bootconfig' \
+            --vendor_cmdline 'bootopt=64S3,32N2,64N2 bootconfig androidboot.selinux=permissive' \
             --board '' \
             --dtb ${GITHUB_WORKSPACE}/device/xiaomi/emerald/prebuilt/dtb.img \
             --vendor_bootconfig ${GITHUB_WORKSPACE}/device/xiaomi/emerald/prebuilt/bootconfig \
@@ -133,7 +144,7 @@ jobs:
             --vendor_ramdisk_fragment ${GITHUB_WORKSPACE}/device/xiaomi/emerald/prebuilt/platform_ramdisk.cpio.lz4 \
             --ramdisk_type 2 \
             --ramdisk_name recovery \
-            --vendor_ramdisk_fragment "${RECOVERY_RAMDISK}" \
+            --vendor_ramdisk_fragment ${GITHUB_WORKSPACE}/recovery_fragment.cpio.lz4 \
             --vendor_boot ${GITHUB_WORKSPACE}/out_artifacts/vendor_boot.img
 
           cp ${GITHUB_WORKSPACE}/out_artifacts/vendor_boot.img ${GITHUB_WORKSPACE}/out_artifacts/recovery.img

@@ -5,6 +5,46 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
+on early-init
+    # 1. Core clock, pin control, bus & power management modules
+    insmod /lib/modules/pinctrl-mtk-v2.ko
+    insmod /lib/modules/pinctrl-mt6789.ko
+    insmod /lib/modules/clk-common.ko
+    insmod /lib/modules/clk-mt6789.ko
+    insmod /lib/modules/i2c-mt65xx.ko
+    insmod /lib/modules/spi-mt65xx.ko
+    insmod /lib/modules/mtk-pmic-wrap.ko
+    insmod /lib/modules/mt6397.ko
+    insmod /lib/modules/mt6358-regulator.ko
+    insmod /lib/modules/mt6375.ko
+
+    # 2. Display DRM & Panel drivers (Required to bypass splash logo freeze)
+    insmod /lib/modules/drm_dma_helper.ko
+    insmod /lib/modules/drm_display_helper.ko
+    insmod /lib/modules/rt4831a_drv.ko
+    insmod /lib/modules/mtk_panel_ext.ko
+    insmod /lib/modules/panel-alpha-jdi-nt36672e-vdo-120hz-hfp.ko
+    insmod /lib/modules/panel-n6-42-0d-0a-dsc-vdo.ko
+    insmod /lib/modules/panel-n6-41-02-0b-dsc-vdo.ko
+    insmod /lib/modules/panel-alpha-jdi-nt36672e-cphy-vdo.ko
+    insmod /lib/modules/panel-truly-td4330-cmd.ko
+    insmod /lib/modules/panel-tianma-r66451-cmd-120hz.ko
+    insmod /lib/modules/panel-nt37801-cmd-fhd-10bit.ko
+    insmod /lib/modules/panel-samsung-s68fc01-vdo-aod.ko
+    insmod /lib/modules/mediatek_drm_v1.ko
+    insmod /lib/modules/pwm-mtk-disp.ko
+    insmod /lib/modules/leds-mtk.ko
+    insmod /lib/modules/leds-mtk-disp.ko
+    insmod /lib/modules/leds-mtk-pwm.ko
+
+    # 3. UFS Storage Controller drivers (Required for /dev/block/.../11270000.ufshci)
+    insmod /lib/modules/phy-generic.ko
+    insmod /lib/modules/phy-mtk-ufs.ko
+    insmod /lib/modules/rpmb.ko
+    insmod /lib/modules/rpmb-mtk.ko
+    insmod /lib/modules/ufs-mediatek-mod.ko
+    insmod /lib/modules/ufs-mediatek-dbg.ko
+
 on init
     setprop sys.usb.configfs 1
     setprop sys.usb.ffs.aio_compat 0
@@ -12,7 +52,7 @@ on init
     setprop vendor.usb.controller "musb-hdrc"
 
 on fs
-    wait /dev/block/platform/soc/11270000.ufshci
+    wait /dev/block/platform/soc/11270000.ufshci 10
     symlink /dev/block/platform/soc/11270000.ufshci /dev/block/bootdevice
     mkdir /vendor 0755 root root
     mkdir /vendor/lib 0755 root root
