@@ -65,25 +65,23 @@ if [ -n "${KERNEL_DIR}" ] && [ -f "${KERNEL_DIR}/dtb/mt6789.dtb" ]; then
   cp -f "${KERNEL_DIR}/dtb/mt6789.dtb" "${DEVICE_DIR}/prebuilt/dtb.img"
 fi
 
-# 2. Sync Touch Modules from kernel tree
+# 2. Sync Kernel Modules from kernel tree (ramdisk & dlkm)
 if [ -n "${KERNEL_DIR}" ]; then
   echo "--> Updating kernel modules from kernel tree..."
   mkdir -p "${DEVICE_DIR}/recovery/root/lib/modules"
   mkdir -p "${DEVICE_DIR}/recovery/root/vendor/lib/modules"
+
+  # Copy all vendor ramdisk kernel modules (display, ufs, keys, vibrator, battery, regulators, etc.)
+  if [ -d "${KERNEL_DIR}/modules_ramdisk" ]; then
+    cp -f "${KERNEL_DIR}/modules_ramdisk/"*.ko "${DEVICE_DIR}/recovery/root/lib/modules/"
+    cp -f "${KERNEL_DIR}/modules_ramdisk/"*.ko "${DEVICE_DIR}/recovery/root/vendor/lib/modules/"
+  fi
 
   # Core touch modules from modules_dlkm
   for mod in xiaomi.ko switch_class.ko gt9916.ko ft3683g.ko touch_boost.ko mtk_ioctl_touch_boost.ko; do
     if [ -f "${KERNEL_DIR}/modules_dlkm/${mod}" ]; then
       cp -f "${KERNEL_DIR}/modules_dlkm/${mod}" "${DEVICE_DIR}/recovery/root/lib/modules/"
       cp -f "${KERNEL_DIR}/modules_dlkm/${mod}" "${DEVICE_DIR}/recovery/root/vendor/lib/modules/"
-    fi
-  done
-
-  # Platform dependencies from modules_ramdisk
-  for mod in hqsys_pcba.ko hqsysfs.ko miev.ko pd_dbg_info.ko tcpc_class.ko; do
-    if [ -f "${KERNEL_DIR}/modules_ramdisk/${mod}" ]; then
-      cp -f "${KERNEL_DIR}/modules_ramdisk/${mod}" "${DEVICE_DIR}/recovery/root/lib/modules/"
-      cp -f "${KERNEL_DIR}/modules_ramdisk/${mod}" "${DEVICE_DIR}/recovery/root/vendor/lib/modules/"
     fi
   done
 fi

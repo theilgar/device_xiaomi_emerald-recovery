@@ -62,6 +62,17 @@ on early-init
     insmod /lib/modules/mtk_ioctl_touch_boost.ko
     insmod /lib/modules/touch_boost.ko
 
+    # 7. Hardware Keys, Vibrator, RTC & Battery Drivers
+    insmod /lib/modules/mtk-pmic-keys.ko
+    insmod /lib/modules/mtk-kpd.ko
+    insmod /lib/modules/regulator-vibrator.ko
+    insmod /lib/modules/haptic.ko
+    insmod /lib/modules/rtc-mt6397.ko
+    insmod /lib/modules/mtk_battery_manager.ko
+    insmod /lib/modules/mt6358_battery.ko
+    insmod /lib/modules/subpmic_charger.ko
+    insmod /lib/modules/main_chg.ko
+
 on init
     setprop sys.usb.configfs 1
     setprop sys.usb.ffs.aio_compat 0

@@ -97,6 +97,9 @@ TW_PREPARE_DATA_MEDIA_EARLY := true
 TW_USE_TOOLBOX := true
 TW_INCLUDE_RESETPROP := true
 TW_INCLUDE_REPACKTOOLS := true
+TW_INCLUDE_FASTBOOTD := true
+TW_SUPPORT_INPUT_1_2_HAPTICS := true
+TW_INPUT_KEY_VIBRATOR_PATH := /sys/class/leds/vibrator/activate
 TW_HAS_MTP := true
 TW_DEFAULT_EXTERNAL_STORAGE := true
 TW_EXCLUDE_NANO := true
@@ -122,7 +125,8 @@ TW_MAX_BRIGHTNESS := 2047
 TW_DEFAULT_BRIGHTNESS := 1024
 
 # Flashlight
-OF_FL_PATH1 := /sys/class/leds/flashlight
+OF_FL_PATH1 := /sys/devices/platform/flashlights_mt6789/mt6789_flash
+OF_FL_PATH2 := /sys/class/leds/flashlight
 
 # Dynamic Partitions & Backup List
 OF_DYNAMIC_FULL_SIZE := 7515144192

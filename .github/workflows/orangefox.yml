@@ -101,8 +101,6 @@ jobs:
         shell: bash --noprofile --norc {0}
         run: |
           set +e
-          exec > >(tee -a /tmp/build.log) 2>&1
-          set -x
           cd ~/orangefox
           export ALLOW_MISSING_DEPENDENCIES=true
           export FOX_BUILD_TYPE="Alpha"
@@ -126,8 +124,8 @@ jobs:
           fi
 
           echo "=== STARTING COMPILATION ==="
-          mka adbd vendorbootimage recoveryimage -j$(nproc --all)
-          BUILD_STATUS=$?
+          mka adbd vendorbootimage recoveryimage -j$(nproc --all) 2>&1 | tee -a /tmp/build.log
+          BUILD_STATUS=${PIPESTATUS[0]}
           echo "=== Build return code: ${BUILD_STATUS} ==="
           if [ ${BUILD_STATUS} -ne 0 ]; then
             echo "ERROR: Compilation failed."
@@ -139,48 +137,55 @@ jobs:
           mkdir -p ${GITHUB_WORKSPACE}/out_artifacts
           cd ~/orangefox/out/target/product/emerald
           find . -maxdepth 2 -name "OrangeFox*.zip" -exec cp {} ${GITHUB_WORKSPACE}/out_artifacts/ \; || true
+          find . -maxdepth 2 -name "OrangeFox*.img" -exec cp {} ${GITHUB_WORKSPACE}/out_artifacts/ \; || true
+          find . -maxdepth 2 -name "vendor_boot.img" -exec cp {} ${GITHUB_WORKSPACE}/out_artifacts/vendor_boot.img \; || true
 
-          # Find compiled recovery ramdisk
-          RECOVERY_RAMDISK=$(find ~/orangefox/out/target/product/emerald -name "recovery.cpio*" | head -n 1)
+          # Find compiled recovery ramdisk for hybrid repacking
+          RECOVERY_RAMDISK=$(find ~/orangefox/out/target/product/emerald -name "vendor_ramdisk.cpio*" -o -name "recovery.cpio*" 2>/dev/null | head -n 1)
           echo "Using recovery ramdisk: ${RECOVERY_RAMDISK}"
 
-          # Ensure recovery ramdisk fragment is compressed with legacy LZ4 (magic 0x184c2102) required by MediaTek MT6789 GKI kernel
-          mkdir -p /tmp/rec_repack
-          if [[ "${RECOVERY_RAMDISK}" == *.gz ]]; then
-            gzip -dc "${RECOVERY_RAMDISK}" > /tmp/rec_repack/recovery.cpio
-          elif [[ "${RECOVERY_RAMDISK}" == *.lz4 ]]; then
-            lz4 -dc "${RECOVERY_RAMDISK}" > /tmp/rec_repack/recovery.cpio
-          else
-            cp "${RECOVERY_RAMDISK}" /tmp/rec_repack/recovery.cpio
+          if [ -n "${RECOVERY_RAMDISK}" ] && [ -f "${RECOVERY_RAMDISK}" ]; then
+            mkdir -p /tmp/rec_repack
+            if [[ "${RECOVERY_RAMDISK}" == *.gz ]]; then
+              gzip -dc "${RECOVERY_RAMDISK}" > /tmp/rec_repack/recovery.cpio
+            elif [[ "${RECOVERY_RAMDISK}" == *.lz4 ]]; then
+              lz4 -dc "${RECOVERY_RAMDISK}" > /tmp/rec_repack/recovery.cpio
+            else
+              cp "${RECOVERY_RAMDISK}" /tmp/rec_repack/recovery.cpio
+            fi
+            lz4 -9 -l /tmp/rec_repack/recovery.cpio ${GITHUB_WORKSPACE}/recovery_fragment.cpio.lz4
+
+            # Assemble complete hybrid vendor_boot.img (Platform Ramdisk + OrangeFox Recovery + MT6789 DTB + Bootconfig)
+            python3 ${GITHUB_WORKSPACE}/device/xiaomi/emerald/prebuilt/mkbootimg.py \
+              --header_version 4 \
+              --pagesize 0x00001000 \
+              --base 0x00000000 \
+              --kernel_offset 0x40000000 \
+              --ramdisk_offset 0x66f00000 \
+              --tags_offset 0x47c80000 \
+              --dtb_offset 0x0000000047c80000 \
+              --vendor_cmdline 'bootopt=64S3,32N2,64N2 bootconfig androidboot.selinux=permissive' \
+              --board '' \
+              --dtb ${GITHUB_WORKSPACE}/device/xiaomi/emerald/prebuilt/dtb.img \
+              --vendor_bootconfig ${GITHUB_WORKSPACE}/device/xiaomi/emerald/prebuilt/bootconfig \
+              --ramdisk_type 1 \
+              --ramdisk_name '' \
+              --vendor_ramdisk_fragment ${GITHUB_WORKSPACE}/device/xiaomi/emerald/prebuilt/platform_ramdisk.cpio.lz4 \
+              --ramdisk_type 2 \
+              --ramdisk_name recovery \
+              --vendor_ramdisk_fragment ${GITHUB_WORKSPACE}/recovery_fragment.cpio.lz4 \
+              --vendor_boot ${GITHUB_WORKSPACE}/out_artifacts/vendor_boot_hybrid.img || true
           fi
-          lz4 -9 -l /tmp/rec_repack/recovery.cpio ${GITHUB_WORKSPACE}/recovery_fragment.cpio.lz4
 
-          # Assemble complete hybrid vendor_boot.img (Platform Ramdisk + OrangeFox Recovery + MT6789 DTB + Bootconfig)
-          python3 ${GITHUB_WORKSPACE}/device/xiaomi/emerald/prebuilt/mkbootimg.py \
-            --header_version 4 \
-            --pagesize 0x00001000 \
-            --base 0x00000000 \
-            --kernel_offset 0x40000000 \
-            --ramdisk_offset 0x66f00000 \
-            --tags_offset 0x47c80000 \
-            --dtb_offset 0x0000000047c80000 \
-            --vendor_cmdline 'bootopt=64S3,32N2,64N2 bootconfig androidboot.selinux=permissive' \
-            --board '' \
-            --dtb ${GITHUB_WORKSPACE}/device/xiaomi/emerald/prebuilt/dtb.img \
-            --vendor_bootconfig ${GITHUB_WORKSPACE}/device/xiaomi/emerald/prebuilt/bootconfig \
-            --ramdisk_type 1 \
-            --ramdisk_name '' \
-            --vendor_ramdisk_fragment ${GITHUB_WORKSPACE}/device/xiaomi/emerald/prebuilt/platform_ramdisk.cpio.lz4 \
-            --ramdisk_type 2 \
-            --ramdisk_name recovery \
-            --vendor_ramdisk_fragment ${GITHUB_WORKSPACE}/recovery_fragment.cpio.lz4 \
-            --vendor_boot ${GITHUB_WORKSPACE}/out_artifacts/vendor_boot.img
+          if [ ! -f "${GITHUB_WORKSPACE}/out_artifacts/vendor_boot.img" ] && [ -f "${GITHUB_WORKSPACE}/out_artifacts/vendor_boot_hybrid.img" ]; then
+            cp ${GITHUB_WORKSPACE}/out_artifacts/vendor_boot_hybrid.img ${GITHUB_WORKSPACE}/out_artifacts/vendor_boot.img
+          fi
 
-          cp ${GITHUB_WORKSPACE}/out_artifacts/vendor_boot.img ${GITHUB_WORKSPACE}/out_artifacts/recovery.img
-
-          # Also create 64MB padded version matching physical partition size
-          cp ${GITHUB_WORKSPACE}/out_artifacts/vendor_boot.img ${GITHUB_WORKSPACE}/out_artifacts/vendor_boot_64mb.img
-          truncate -s 67108864 ${GITHUB_WORKSPACE}/out_artifacts/vendor_boot_64mb.img
+          if [ -f "${GITHUB_WORKSPACE}/out_artifacts/vendor_boot.img" ]; then
+            cp ${GITHUB_WORKSPACE}/out_artifacts/vendor_boot.img ${GITHUB_WORKSPACE}/out_artifacts/recovery.img
+            cp ${GITHUB_WORKSPACE}/out_artifacts/vendor_boot.img ${GITHUB_WORKSPACE}/out_artifacts/vendor_boot_64mb.img
+            truncate -s 67108864 ${GITHUB_WORKSPACE}/out_artifacts/vendor_boot_64mb.img
+          fi
 
           cd ${GITHUB_WORKSPACE}/out_artifacts
           ls -lh
