@@ -79,7 +79,7 @@ jobs:
           export FOX_VENDOR_BOOT_RECOVERY=1
           export OF_VENDOR_BOOT_RECOVERY=1
           export LC_ALL="C"
-          mka vendorbootimage -j$(nproc --all) || mka recoveryimage -j$(nproc --all)
+          mka adbd recoveryimage -j$(nproc --all) 2>&1 | tee /tmp/build.log
 
       - name: Prepare Artifacts
         run: |
@@ -101,9 +101,14 @@ jobs:
       - name: Debug Output on Failure
         if: failure()
         run: |
-          echo "=== Files in device tree ==="
-          ls -la ~/orangefox/device/xiaomi/emerald || true
-          echo "=== Out directory contents ==="
-          ls -la ~/orangefox/out/target/product/emerald || true
-          echo "=== Tail of build log files ==="
-          find ~/orangefox/out -name "*.log" -exec tail -n 100 {} + || true
+          echo "=== TAIL OF BUILD LOG (LAST 250 LINES) ==="
+          tail -n 250 /tmp/build.log || true
+          echo "=== FILES IN OUT DIRECTORY ==="
+          find ~/orangefox/out -maxdepth 3 -ls || true
+
+      - name: Upload Build Log on Failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-failure-log
+          path: /tmp/build.log
