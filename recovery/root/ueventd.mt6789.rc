@@ -10,5 +10,9 @@
 /dev/block/by-name/*                              0660 root system
 
 # Graphics & Touch
-/dev/graphics/*         0660 system graphics
-/dev/input/*            0660 system input
+/dev/graphics/*           0660 system graphics
+/dev/input/*              0666 root   input
+/dev/touch                0666 root   system
+/dev/xiaomi-touch         0666 root   system
+/dev/xiaomi-touch-knock   0664 root   system
+/dev/xiaomi-thp           0664 root   system
