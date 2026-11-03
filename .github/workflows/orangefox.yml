@@ -62,6 +62,12 @@ jobs:
           cp -a ${GITHUB_WORKSPACE}/device/xiaomi/emerald ~/orangefox/device/xiaomi/
           ls -la ~/orangefox/device/xiaomi/emerald/
 
+      - name: Update mkbootimg for Boot Header v4
+        run: |
+          mkdir -p ~/orangefox/system/tools/mkbootimg
+          cp -f ${GITHUB_WORKSPACE}/device/xiaomi/emerald/prebuilt/mkbootimg.py ~/orangefox/system/tools/mkbootimg/mkbootimg.py
+          cp -f ${GITHUB_WORKSPACE}/device/xiaomi/emerald/prebuilt/unpack_bootimg.py ~/orangefox/system/tools/mkbootimg/unpack_bootimg.py
+
       - name: Compile OrangeFox Recovery
         shell: bash --noprofile --norc {0}
         run: |
