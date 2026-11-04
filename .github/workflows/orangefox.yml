@@ -100,6 +100,15 @@ jobs:
             patch -p1 -d ~/orangefox/bootable/recovery -N -r - < "${GITHUB_WORKSPACE}/device/xiaomi/emerald/patches/minuitwrp_awinic_haptics.patch" || true
           fi
 
+          # Calibrate OrangeFox native theme for 1080x2400 AMOLED (eliminate 1.25x double scaling and restore bottom navbar)
+          echo "=== Calibrating OrangeFox UI for 1080x2400 ==="
+          find ~/orangefox -name "ui.xml" -exec sed -i 's/<resolution width="1080" height="1920" \/>/<resolution width="1080" height="2400" \/>/g' {} + 2>/dev/null || true
+          find ~/orangefox -name "splash.xml" -exec sed -i 's/<resolution width="1080" h="1920"\/>/<resolution width="1080" h="2400"\/>/g' {} + 2>/dev/null || true
+          find ~/orangefox -name "splash.xml" -exec sed -i 's/<variable name="screen_height" value="1920"\/>/<variable name="screen_height" value="2400"\/>/g' {} + 2>/dev/null || true
+          find ~/orangefox -name "navbar.xml" -exec sed -i 's/<variable name="navbar_disable" value="1"\/>/<variable name="navbar_disable" value="0"\/>/g' {} + 2>/dev/null || true
+          find ~/orangefox -name "navbar.xml" -exec sed -i 's/<variable name="real_gestures_enable" value="1"\/>/<variable name="real_gestures_enable" value="0"\/>/g' {} + 2>/dev/null || true
+          find ~/orangefox -name "navbar.xml" -exec sed -i 's/<variable name="screen_h" value="%screen_original_h%+96"\/>/<variable name="screen_h" value="%screen_original_h%"\/>/g' {} + 2>/dev/null || true
+
       - name: Compile OrangeFox Recovery
         shell: bash --noprofile --norc {0}
         run: |
@@ -108,7 +117,6 @@ jobs:
           export ALLOW_MISSING_DEPENDENCIES=true
           export FOX_BUILD_TYPE="Alpha"
           export FOX_BUILD_DEVICE="emerald"
-          export FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER=1
           export FOX_VENDOR_BOOT_RECOVERY=1
           export LC_ALL="C"
           source build/envsetup.sh
@@ -185,15 +193,18 @@ jobs:
 
           if [ -f "${GITHUB_WORKSPACE}/out_artifacts/vendor_boot_hybrid.img" ]; then
             cp -f ${GITHUB_WORKSPACE}/out_artifacts/vendor_boot_hybrid.img ${GITHUB_WORKSPACE}/out_artifacts/vendor_boot.img
+            rm -f ${GITHUB_WORKSPACE}/out_artifacts/vendor_boot_hybrid.img
           fi
 
+          # All flashable vendor_boot/recovery images must strictly be padded to 64MB (67,108,864 bytes).
+          # MediaTek LK bootloader strictly rejects unpadded images with partition size mismatch.
           if [ -f "${GITHUB_WORKSPACE}/out_artifacts/vendor_boot.img" ]; then
-            cp -f ${GITHUB_WORKSPACE}/out_artifacts/vendor_boot.img ${GITHUB_WORKSPACE}/out_artifacts/recovery.img
-            cp -f ${GITHUB_WORKSPACE}/out_artifacts/vendor_boot.img ${GITHUB_WORKSPACE}/out_artifacts/vendor_boot_64mb.img
-            CURR_SZ=$(stat -c%s "${GITHUB_WORKSPACE}/out_artifacts/vendor_boot_64mb.img" 2>/dev/null || stat -f%z "${GITHUB_WORKSPACE}/out_artifacts/vendor_boot_64mb.img")
+            CURR_SZ=$(stat -c%s "${GITHUB_WORKSPACE}/out_artifacts/vendor_boot.img" 2>/dev/null || stat -f%z "${GITHUB_WORKSPACE}/out_artifacts/vendor_boot.img")
             if [ "${CURR_SZ}" -lt 67108864 ]; then
-              truncate -s 67108864 ${GITHUB_WORKSPACE}/out_artifacts/vendor_boot_64mb.img
+              truncate -s 67108864 ${GITHUB_WORKSPACE}/out_artifacts/vendor_boot.img
             fi
+            cp -f ${GITHUB_WORKSPACE}/out_artifacts/vendor_boot.img ${GITHUB_WORKSPACE}/out_artifacts/vendor_boot_64mb.img
+            cp -f ${GITHUB_WORKSPACE}/out_artifacts/vendor_boot.img ${GITHUB_WORKSPACE}/out_artifacts/recovery.img
           fi
 
           cd ${GITHUB_WORKSPACE}/out_artifacts

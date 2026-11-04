@@ -37,7 +37,10 @@ on early-init
     insmod /lib/modules/leds-mtk-disp.ko
     insmod /lib/modules/leds-mtk-pwm.ko
 
-    # 3. UFS Storage Controller drivers (Required for /dev/block/.../11270000.ufshci)
+    # 3. UFS Storage Controller & TrustZone Security Drivers (Required for /dev/block/.../11270000.ufshci and crypto)
+    insmod /lib/modules/sec.ko
+    insmod /lib/modules/mcDrvModule.ko
+    insmod /lib/modules/mitee.ko
     insmod /lib/modules/phy-generic.ko
     insmod /lib/modules/phy-mtk-ufs.ko
     insmod /lib/modules/rpmb.ko
@@ -84,6 +87,8 @@ on init
     setprop sys.usb.ffs.ready 1
     setprop sys.usb.controller "musb-hdrc"
     setprop vendor.usb.controller "musb-hdrc"
+    mkdir /tmp/misc 0770 system system
+    mkdir /tmp/misc/keystore 0700 keystore keystore
 
 on fs
     wait /dev/block/platform/soc/11270000.ufshci 10

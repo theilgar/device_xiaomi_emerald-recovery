@@ -73,6 +73,7 @@ if [ -n "${KERNEL_DIR}" ]; then
   # Copy all vendor ramdisk kernel modules (display, ufs, keys, vibrator, battery, regulators, etc.)
   if [ -d "${KERNEL_DIR}/modules_ramdisk" ]; then
     cp -f "${KERNEL_DIR}/modules_ramdisk/"*.ko "${DEVICE_DIR}/recovery/root/lib/modules/"
+    cp -f "${KERNEL_DIR}/modules_ramdisk/"modules.* "${DEVICE_DIR}/recovery/root/lib/modules/" 2>/dev/null || true
   fi
 
   # Core touch and flashlight modules from modules_dlkm
