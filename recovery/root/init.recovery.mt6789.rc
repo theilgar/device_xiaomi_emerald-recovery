@@ -112,11 +112,28 @@ on fs
 
 # Touchscreen, Backlight, Vibrator & Flashlight permissions
 on boot
-    # CPU & Scheduler Performance Optimization (Eliminates UI touch lag and boosts FPS)
-    write /proc/sys/kernel/sched_util_clamp_min 128
+    # CPU & Scheduler Performance Optimization (Eliminates UI lag, stutter and boosts FPS)
+    # 1. Force all 8 CPU cores online (6x Cortex-A55 Little + 2x Cortex-A76 Big)
+    write /sys/devices/system/cpu/cpu1/online 1
+    write /sys/devices/system/cpu/cpu2/online 1
+    write /sys/devices/system/cpu/cpu3/online 1
+    write /sys/devices/system/cpu/cpu4/online 1
+    write /sys/devices/system/cpu/cpu5/online 1
+    write /sys/devices/system/cpu/cpu6/online 1
+    write /sys/devices/system/cpu/cpu7/online 1
+
+    # 2. CPU Governors & Frequency Clocks (lock to performance mode, unthrottled)
+    write /sys/devices/system/cpu/cpufreq/policy0/scaling_governor performance
+    write /sys/devices/system/cpu/cpufreq/policy6/scaling_governor performance
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor performance
+    write /sys/devices/system/cpu/cpu6/cpufreq/scaling_governor performance
+    write /sys/devices/system/cpu/cpufreq/policy0/scaling_min_freq 2000000
+    write /sys/devices/system/cpu/cpufreq/policy6/scaling_min_freq 2200000
+
+    # 3. Scheduler & Latency Optimization (Eliminate C-state wake delay & touch lag)
+    write /proc/sys/kernel/sched_util_clamp_min 1024
+    write /proc/sys/kernel/sched_util_clamp_min_rt_default 1024
     write /proc/sys/kernel/sched_energy_aware 0
-    write /sys/devices/system/cpu/cpufreq/policy0/scaling_governor "performance"
-    write /sys/devices/system/cpu/cpufreq/policy6/scaling_governor "performance"
     write /sys/devices/system/cpu/cpuidle/current_governor teo
 
     # Backlight permissions
