@@ -12,6 +12,7 @@ product         /product        erofs   ro      wait,slotselect,logical,first_st
 system_ext      /system_ext     erofs   ro      wait,slotselect,logical,first_stage_mount
 vendor_dlkm     /vendor_dlkm    erofs   ro      wait,slotselect,logical,first_stage_mount
 system_dlkm     /system_dlkm    erofs   ro      wait,slotselect,logical,first_stage_mount
+odm_dlkm        /odm_dlkm       erofs   ro      wait,slotselect,logical,first_stage_mount
 
 # Metadata & Userdata
 /dev/block/by-name/metadata     /metadata       ext4    noatime,nosuid,nodev,discard    wait,check,formattable,first_stage_mount

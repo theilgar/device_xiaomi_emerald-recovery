@@ -89,12 +89,13 @@ graph TD
         vendor["/vendor (EROFS, ro)"]
         vendor_dlkm["/vendor_dlkm (EROFS, ro)"]
         system_dlkm["/system_dlkm (EROFS, ro)"]
+        odm_dlkm["/odm_dlkm (EROFS, ro)"]
     end
 
     super --> DynamicSuper
 ```
 
-* **Dinamik Məntiqi Bölmələr:** `system`, `system_ext`, `vendor`, `product`, `vendor_dlkm`, `system_dlkm` — hamısı sıxılmış, yüksək oxuma sürətinə malik **`erofs`** fayl sistemindədir.
+* **Dinamik Məntiqi Bölmələr:** `system`, `system_ext`, `vendor`, `product`, `vendor_dlkm`, `system_dlkm`, `odm_dlkm` — hamısı sıxılmış, yüksək oxuma sürətinə malik **`erofs`** fayl sistemindədir.
 * **Radio və IMEI Qorunması:** Bütün kalibrasiya və IMEI məlumatları (`nvram`, `nvdata`, `nvcfg`, `persist`, `protect1`, `protect2`, `proinfo`) `twrp.flags` daxilində `backup=1` təyin edilib.
 
 ---
@@ -292,3 +293,6 @@ fastboot reboot recovery
 5. Haptika sistemində `minuitwrp_awinic_haptics.patch` və `/sys/class/leds/awinic_vibrator/vibrator/activate` qovşağı əsas götürülməlidir.
 6. Yeni kernel modulları və ya DTB yeniləndikdə mütləq `scripts/sync_from_lineage.sh` skriptindən istifadə olunmalıdır.
 7. **ORANGEFOX İNTERFEYS (UI) QAYDASI:** `ui.xml` və `splash.xml` fayllarında rezolyusiya mütləq `1080x2400` olmalıdır. Əks halda `recovery` binarı $2400/1920 = 1.25\times$ ikiqat miqyaslama tətbiq edərək alt naviqasiya panelini və əsas tabları ekranın alt sərhədindən 420px aşağıya (görünməz sahəyə) atır. `OF_STATUS_H := 104`, `OF_HIDE_NOTCH := 1` və `navbar_disable := 0` təyin edilməlidir.
+8. **OTA & Preloader Simvolik Keçidləri:** Rəsmi HyperOS OTA ZIP-lərinin flash edilə bilməsi üçün `init.recovery.mt6789.rc`-də `lk1 -> bootloader`, `lk1 -> bootloader1`, `preloader_raw_a -> preloader_a` keçidləri mütləq olmalıdır.
+9. **FBE Fayl Adları Şifrələməsi (`system.prop`):** MediaTek MT6789 FBE v2 üçün `ro.crypto.volume.filenames_mode=aes-256-cts` təyin edilməlidir, əks halda `/data/media/0` fayl adları şifrəli simvollar kimi qalır.
+10. **Dinamik Bölmələr (`odm_dlkm`):** `super` partitsiyasında ODM kernel modulları üçün `odm_dlkm` bölməsi `BoardConfig.mk` və `recovery.fstab`-da tanınmalıdır.

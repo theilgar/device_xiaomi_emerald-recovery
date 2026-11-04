@@ -65,12 +65,15 @@ on early-init
     insmod /lib/modules/mtk_ioctl_touch_boost.ko
     insmod /lib/modules/touch_boost.ko
 
-    # 7. Hardware Keys, Vibrator, RTC & Battery Drivers
+    # 7. Hardware Keys, Vibrator, RTC, Battery & USB-PD Charging Drivers
     insmod /lib/modules/mtk-pmic-keys.ko
     insmod /lib/modules/mtk-kpd.ko
     insmod /lib/modules/regulator-vibrator.ko
     insmod /lib/modules/haptic.ko
     insmod /lib/modules/rtc-mt6397.ko
+    insmod /lib/modules/extcon-mtk-usb.ko
+    insmod /lib/modules/tcpc_class.ko
+    insmod /lib/modules/rt_pd_manager.ko
     insmod /lib/modules/mtk_battery_manager.ko
     insmod /lib/modules/mt6358_battery.ko
     insmod /lib/modules/subpmic_charger.ko
@@ -98,6 +101,13 @@ on fs
     mkdir /vendor/lib 0755 root root
     symlink /lib/modules /vendor/lib/modules
     symlink /lib/firmware /vendor/firmware
+
+    # Bootloader and Preloader symlinks for OTA / Firmware flashing compatibility
+    symlink /dev/block/by-name/lk1 /dev/block/by-name/bootloader1
+    symlink /dev/block/by-name/lk2 /dev/block/by-name/bootloader2
+    symlink /dev/block/by-name/lk1 /dev/block/by-name/bootloader
+    symlink /dev/block/by-name/preloader_raw_a /dev/block/by-name/preloader_a
+    symlink /dev/block/by-name/preloader_raw_b /dev/block/by-name/preloader_b
 
 # Touchscreen, Backlight, Vibrator & Flashlight permissions
 on boot

@@ -1,0 +1,19 @@
+#
+# Copyright (C) 2026 The Android Open Source Project
+# Copyright (C) 2026 The OrangeFox Recovery Project
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+# FBE v2 File Names Encryption (MediaTek MT6789 standard)
+ro.crypto.volume.filenames_mode=aes-256-cts
+
+# USB Configuration for Recovery & Fastbootd
+ro.recovery.usb.vid=18D1
+ro.recovery.usb.adb.pid=D001
+ro.recovery.usb.fastboot.pid=4EE0
+ro.sys.usb.storage.type=mtp
+
+# Hardware & Touch
+ro.vendor.touchfeature.type=183
+ro.vendor.mtk_f2fs_enable=0
