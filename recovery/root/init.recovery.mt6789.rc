@@ -76,6 +76,7 @@ on early-init
     insmod /lib/modules/rt_pd_manager.ko
     insmod /lib/modules/mtk_battery_manager.ko
     insmod /lib/modules/mt6358_battery.ko
+    insmod /lib/modules/hq_led_class.ko
     insmod /lib/modules/subpmic_charger.ko
     insmod /lib/modules/main_chg.ko
 
@@ -142,9 +143,20 @@ on boot
     chmod 0666 /sys/class/leds/awinic_vibrator/vibrator/duration
     chmod 0666 /sys/class/leds/awinic_vibrator/vibrator/state
 
-    # Flashlight permissions
+    # Flashlight permissions & OrangeFox recovery bridge
     chmod 0666 /sys/devices/platform/flashlights_mt6789/mt6789_flash
     chown system system /sys/devices/platform/flashlights_mt6789/mt6789_flash
+    chmod 0666 /flashlight/brightness
+    chmod 0666 /flashlight/max_brightness
+    chown system system /flashlight/brightness
+    chown system system /flashlight/max_brightness
+    mkdir /tmp/flashlight 0777 system system
+    symlink /sys/devices/platform/flashlights_mt6789/mt6789_flash /tmp/flashlight/brightness
+    write /tmp/flashlight/max_brightness "1"
+    chmod 0666 /tmp/flashlight/brightness
+    chmod 0666 /tmp/flashlight/max_brightness
+    chown system system /tmp/flashlight/brightness
+    chown system system /tmp/flashlight/max_brightness
 
     chown system system /dev/xiaomi-touch
     chmod 0666 /dev/xiaomi-touch

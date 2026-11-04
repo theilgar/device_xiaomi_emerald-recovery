@@ -196,3 +196,6 @@ xiaomi.ko
 switch_class.ko
 ft3683g.ko
 gt9916.ko
+flashlight.ko
+lm3643.ko
+flashlights-mt6789.ko

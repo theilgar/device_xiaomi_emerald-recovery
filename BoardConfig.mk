@@ -157,8 +157,9 @@ TW_MAX_BRIGHTNESS := 4095
 TW_DEFAULT_BRIGHTNESS := 2048
 
 # Flashlight
-OF_FL_PATH1 := /sys/devices/platform/flashlights_mt6789/mt6789_flash
-OF_FL_PATH2 := /sys/class/leds/flashlight
+OF_FLASHLIGHT_ENABLE := 1
+OF_FL_PATH1 := /flashlight
+OF_FL_PATH2 := /tmp/flashlight
 
 # Dynamic Partitions & Backup List
 OF_DYNAMIC_FULL_SIZE := 7515144192

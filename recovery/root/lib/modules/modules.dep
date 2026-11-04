@@ -148,6 +148,9 @@
 /lib/modules/aee_rs.ko: /lib/modules/aee_aed.ko
 /lib/modules/mtk-swpm-perf-arm-pmu-legacy.ko:
 /lib/modules/hq_led_class.ko:
+/lib/modules/flashlight.ko:
+/lib/modules/lm3643.ko: /lib/modules/flashlight.ko
+/lib/modules/flashlights-mt6789.ko: /lib/modules/hq_led_class.ko /lib/modules/flashlight.ko
 /lib/modules/musb_hdrc.ko: /lib/modules/phy-generic.ko /lib/modules/aee_aed.ko
 /lib/modules/mt6375-auxadc.ko:
 /lib/modules/irq-dbg.ko:
