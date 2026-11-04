@@ -116,12 +116,12 @@ TW_THEME := portrait_hdpi
 TARGET_RECOVERY_PIXEL_FORMAT := BGRA_8888
 TW_SCREEN_BLANK_ON_BOOT := true
 TW_EXTRA_LANGUAGES := true
-# Encryption & FBE v2 Metadata Decryption
-TW_INCLUDE_CRYPTO := true
-TW_INCLUDE_CRYPTO_FBE := true
-TW_INCLUDE_FBE_METADATA_DECRYPT := true
-TW_USE_FSCRYPT_POLICY := 2
-TW_PREPARE_DATA_MEDIA_EARLY := true
+# In-recovery crypto disabled: MT6789 utilizes proprietary TrustZone KeyMint v3 AIDL daemons on vendor.
+# Disabling in-recovery crypto prevents keystore2 segfault and futex_wait deadlocks on boot.
+TW_INCLUDE_CRYPTO :=
+TW_INCLUDE_CRYPTO_FBE :=
+TW_INCLUDE_FBE_METADATA_DECRYPT :=
+TW_PREPARE_DATA_MEDIA_EARLY :=
 TW_USE_TOOLBOX := true
 TW_INCLUDE_RESETPROP := true
 TW_INCLUDE_REPACKTOOLS := true
