@@ -84,62 +84,24 @@ on init
     setprop sys.usb.ffs.ready 1
     setprop sys.usb.controller "musb-hdrc"
     setprop vendor.usb.controller "musb-hdrc"
-    symlink /system/etc/recovery.fstab /etc/recovery.fstab
-    symlink /system/etc/fox.cfg /etc/fox.cfg
-    symlink /system/etc/twrp.flags /etc/twrp.flags
-    symlink /system/etc/cgroups.json /etc/cgroups.json
 
 on fs
     wait /dev/block/platform/soc/11270000.ufshci 10
     symlink /dev/block/platform/soc/11270000.ufshci /dev/block/bootdevice
     symlink /dev/block/platform/soc/11270000.ufshci/by-name /dev/block/by-name
-    symlink /dev/block/bootdevice/by-name /dev/block/by-name
     mkdir /vendor 0755 root root
     mkdir /vendor/lib 0755 root root
     symlink /lib/modules /vendor/lib/modules
-    mkdir /vendor/firmware 0755 root root
-
-on post-fs
-    symlink /dev/block/platform/soc/11270000.ufshci/by-name /dev/block/by-name
-    symlink /dev/block/bootdevice/by-name /dev/block/by-name
+    symlink /lib/firmware /vendor/firmware
 
 # Touchscreen, Backlight, Vibrator & Flashlight permissions
 on boot
     # CPU & Scheduler Performance Optimization (Eliminates UI touch lag and boosts FPS)
-    write /proc/sys/kernel/sched_util_clamp_min 100
+    write /proc/sys/kernel/sched_util_clamp_min 128
     write /proc/sys/kernel/sched_energy_aware 0
-    write /sys/devices/system/cpu/cpu0/cpuidle/state4/disable 1
-    write /sys/devices/system/cpu/cpu0/cpuidle/state5/disable 1
-    write /sys/devices/system/cpu/cpu0/cpuidle/state6/disable 1
-    write /sys/devices/system/cpu/cpu0/cpuidle/state7/disable 1
-    write /sys/devices/system/cpu/cpu1/cpuidle/state4/disable 1
-    write /sys/devices/system/cpu/cpu1/cpuidle/state5/disable 1
-    write /sys/devices/system/cpu/cpu1/cpuidle/state6/disable 1
-    write /sys/devices/system/cpu/cpu1/cpuidle/state7/disable 1
-    write /sys/devices/system/cpu/cpu2/cpuidle/state4/disable 1
-    write /sys/devices/system/cpu/cpu2/cpuidle/state5/disable 1
-    write /sys/devices/system/cpu/cpu2/cpuidle/state6/disable 1
-    write /sys/devices/system/cpu/cpu2/cpuidle/state7/disable 1
-    write /sys/devices/system/cpu/cpu3/cpuidle/state4/disable 1
-    write /sys/devices/system/cpu/cpu3/cpuidle/state5/disable 1
-    write /sys/devices/system/cpu/cpu3/cpuidle/state6/disable 1
-    write /sys/devices/system/cpu/cpu3/cpuidle/state7/disable 1
-    write /sys/devices/system/cpu/cpu4/cpuidle/state4/disable 1
-    write /sys/devices/system/cpu/cpu4/cpuidle/state5/disable 1
-    write /sys/devices/system/cpu/cpu4/cpuidle/state6/disable 1
-    write /sys/devices/system/cpu/cpu4/cpuidle/state7/disable 1
-    write /sys/devices/system/cpu/cpu5/cpuidle/state4/disable 1
-    write /sys/devices/system/cpu/cpu5/cpuidle/state5/disable 1
-    write /sys/devices/system/cpu/cpu5/cpuidle/state6/disable 1
-    write /sys/devices/system/cpu/cpu5/cpuidle/state7/disable 1
-    write /sys/devices/system/cpu/cpu6/cpuidle/state4/disable 1
-    write /sys/devices/system/cpu/cpu6/cpuidle/state5/disable 1
-    write /sys/devices/system/cpu/cpu6/cpuidle/state6/disable 1
-    write /sys/devices/system/cpu/cpu6/cpuidle/state7/disable 1
-    write /sys/devices/system/cpu/cpu7/cpuidle/state4/disable 1
-    write /sys/devices/system/cpu/cpu7/cpuidle/state5/disable 1
-    write /sys/devices/system/cpu/cpu7/cpuidle/state6/disable 1
-    write /sys/devices/system/cpu/cpu7/cpuidle/state7/disable 1
+    write /sys/devices/system/cpu/cpufreq/policy0/scaling_governor "performance"
+    write /sys/devices/system/cpu/cpufreq/policy6/scaling_governor "performance"
+    write /sys/devices/system/cpu/cpuidle/current_governor teo
 
     # Backlight permissions
     chmod 0666 /sys/class/leds/lcd-backlight/brightness
@@ -179,17 +141,3 @@ on boot
     chmod 0666 /dev/input/event3
     chmod 0666 /dev/input/event4
     chmod 0666 /dev/input/event5
-
-    # Fallback insmod in case early-init deferred
-    insmod /lib/modules/hqsys_pcba.ko
-    insmod /lib/modules/hqsysfs.ko
-    insmod /lib/modules/miev.ko
-    insmod /lib/modules/pd_dbg_info.ko
-    insmod /lib/modules/tcpc_class.ko
-    insmod /lib/modules/switch_class.ko
-    insmod /lib/modules/xiaomi.ko
-    insmod /lib/modules/gt9916.ko
-    insmod /lib/modules/ft3683g.ko
-    insmod /lib/modules/flashlight.ko
-    insmod /lib/modules/lm3643.ko
-    insmod /lib/modules/flashlights-mt6789.ko

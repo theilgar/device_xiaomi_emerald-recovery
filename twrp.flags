@@ -22,11 +22,11 @@
 
 # Radio & Calibrations (IMEI Protection)
 /nvram          emmc    /dev/block/by-name/nvram            flags=display="NVRAM";backup=1
-/nvdata         ext4    /dev/block/by-name/nvdata           flags=display="NVData";backup=1
-/nvcfg          ext4    /dev/block/by-name/nvcfg            flags=display="NVCfg";backup=1
-/persist        ext4    /dev/block/by-name/persist          flags=display="Persist";backup=1
-/protect_f      ext4    /dev/block/by-name/protect1         flags=display="Protect F";backup=1
-/protect_s      ext4    /dev/block/by-name/protect2         flags=display="Protect S";backup=1
+/mnt/vendor/nvdata ext4 /dev/block/by-name/nvdata           flags=display="NVData";backup=1
+/mnt/vendor/nvcfg  ext4 /dev/block/by-name/nvcfg            flags=display="NVCfg";backup=1
+/mnt/vendor/persist ext4 /dev/block/by-name/persist         flags=display="Persist";backup=1
+/mnt/vendor/protect_f ext4 /dev/block/by-name/protect1     flags=display="Protect F";backup=1
+/mnt/vendor/protect_s ext4 /dev/block/by-name/protect2     flags=display="Protect S";backup=1
 /proinfo        emmc    /dev/block/by-name/proinfo          flags=display="ProInfo";backup=1
 
 # External Storage

@@ -183,14 +183,17 @@ jobs:
               --vendor_boot ${GITHUB_WORKSPACE}/out_artifacts/vendor_boot_hybrid.img || true
           fi
 
-          if [ ! -f "${GITHUB_WORKSPACE}/out_artifacts/vendor_boot.img" ] && [ -f "${GITHUB_WORKSPACE}/out_artifacts/vendor_boot_hybrid.img" ]; then
-            cp ${GITHUB_WORKSPACE}/out_artifacts/vendor_boot_hybrid.img ${GITHUB_WORKSPACE}/out_artifacts/vendor_boot.img
+          if [ -f "${GITHUB_WORKSPACE}/out_artifacts/vendor_boot_hybrid.img" ]; then
+            cp -f ${GITHUB_WORKSPACE}/out_artifacts/vendor_boot_hybrid.img ${GITHUB_WORKSPACE}/out_artifacts/vendor_boot.img
           fi
 
           if [ -f "${GITHUB_WORKSPACE}/out_artifacts/vendor_boot.img" ]; then
-            cp ${GITHUB_WORKSPACE}/out_artifacts/vendor_boot.img ${GITHUB_WORKSPACE}/out_artifacts/recovery.img
-            cp ${GITHUB_WORKSPACE}/out_artifacts/vendor_boot.img ${GITHUB_WORKSPACE}/out_artifacts/vendor_boot_64mb.img
-            truncate -s 67108864 ${GITHUB_WORKSPACE}/out_artifacts/vendor_boot_64mb.img
+            cp -f ${GITHUB_WORKSPACE}/out_artifacts/vendor_boot.img ${GITHUB_WORKSPACE}/out_artifacts/recovery.img
+            cp -f ${GITHUB_WORKSPACE}/out_artifacts/vendor_boot.img ${GITHUB_WORKSPACE}/out_artifacts/vendor_boot_64mb.img
+            CURR_SZ=$(stat -c%s "${GITHUB_WORKSPACE}/out_artifacts/vendor_boot_64mb.img" 2>/dev/null || stat -f%z "${GITHUB_WORKSPACE}/out_artifacts/vendor_boot_64mb.img")
+            if [ "${CURR_SZ}" -lt 67108864 ]; then
+              truncate -s 67108864 ${GITHUB_WORKSPACE}/out_artifacts/vendor_boot_64mb.img
+            fi
           fi
 
           cd ${GITHUB_WORKSPACE}/out_artifacts
@@ -221,7 +224,11 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git checkout -B build-log
-          cp /tmp/build.log ./build_error.log
+          if [ -f /tmp/build.log ]; then
+            cp /tmp/build.log ./build_error.log
+          else
+            echo "Build failed before compilation step or build.log was not generated." > ./build_error.log
+          fi
           git add build_error.log
           git commit -m "ci: Dump build error log [skip ci]" || true
           git push -f origin build-log || true
